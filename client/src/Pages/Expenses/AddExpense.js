@@ -14,6 +14,8 @@ import { userProfileAction } from "../../redux/slices/users/usersSlices";
 import calTransaction from "../../utils/accStatistics";
 //import UserProfileStats from "./UserProfileStats";
 import UserProfileStats from "../Users/Profile/UserProfileStats";
+//import { logoutAction } from "../../../redux/slices/users/usersSlices";
+import { logoutAction } from "../../redux/slices/users/usersSlices";
 
 //Form validation
 const formSchema = Yup.object({
@@ -30,13 +32,13 @@ const AddExpense = () => {
     .split(";")
     .find((row) => row.startsWith("item="))
     ?.split("=")[1];
-  console.log(item);
+  //console.log(item);
   const total = document.cookie
     .split(" ")
     .find((row) => row.startsWith("total="))
     ?.split("=")[1];
-  console.log(total);
-  console.log(typeof total);
+  // console.log(total);
+  // console.log(typeof total);
   // if (!item) {
   //   item = "PLS visit Campus Store to Make A purchase";
   //   at = "";
@@ -110,6 +112,9 @@ const AddExpense = () => {
   // const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
+  const adminAuth = profile?.isAdmin;
+  //const adminAuth = profile?.isAdmin;
+  //console.log(adminAuth);
 
   //income
   useEffect(() => {
@@ -121,6 +126,9 @@ const AddExpense = () => {
       const income = calTransaction(profile?.income);
       setIncResult(income);
     }
+    // if (profile?.isAdmin) {
+    //   navigate(history, "dashboard", undefined)
+    // }
   }, [profile?.income]);
 
   useEffect(() => {
@@ -160,21 +168,88 @@ const AddExpense = () => {
   // const maxExpenses = Math.max(...expensesArr);
 
   // console.log(maxExpenses, totalExp);
+  //const adminAuth = profile?.isAdmin;
 
   return (
     <>
-      <section className="py-5 bg-danger vh-100">
-        <div className="container text-center">
-          <a className="d-inline-block mb-5">
-            {/* <img
+      {adminAuth ? (
+        <>
+          <>
+            {/* <Header /> */}
+            <div className="container">
+              {/* <div className="row order-detail"> */}
+              <div
+                style={{
+                  // display: "flex",
+                  // height: "10px",
+                  // width: "100%",
+                  // justifyContent: "center",
+                  // alignItems: "center",
+                  // flexDirection: "column",
+                  marginTop: "50px",
+                }}
+                className="row order-detail"
+              >
+                {/* <div className="col-lg-8 col-sm-8 mb-lg-8 mb-5 mb-sm-0"> */}
+                {/* <div className="row "> */}
+                {/* <div className="col-md-8 center"></div> */}
+                <h1
+                  style={{
+                    display: "flex",
+                    // height: "10px",
+                    // width: "100%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    // marginTop: "40px",
+                  }}
+                >
+                  <i>
+                    Admin Account Not Authorised, Pls Lougout and Use a User
+                    Account
+                  </i>
+                </h1>
+                {/* <div className="col-md-8 center"></div> */}
+                {/* </div> */}
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                height: "10px",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                marginTop: "40px",
+              }}
+            >
+              <button
+                onClick={() => dispatch(logoutAction())}
+                type="button"
+                class="btn btn-primary btn-lg"
+              >
+                Lougout
+              </button>
+            </div>
+            {/* </div> */}
+          </>
+          {/* <h1>Admin not Authorised</h1> */}
+        </>
+      ) : (
+        <section className="py-5 bg-danger vh-100">
+          <div className="container text-center">
+            <a className="d-inline-block mb-5">
+              {/* <img
               className="img-fluid"
               src={moneySVG}
               alt="SVGeXPENSES"
               width="200"
             /> */}
-          </a>
-          <div className="row mb-4">
-            {/* <div className="col-12 col-md-8 col-lg-5 mx-auto">
+            </a>
+            <div className="row mb-4">
+              {/* <div className="col-12 col-md-8 col-lg-5 mx-auto">
               <UserProfileStats
                 numOfTransExp={profile?.expenses?.length}
                 avgExp={expResult?.avg}
@@ -188,44 +263,48 @@ const AddExpense = () => {
                 maxInc={incResult?.max}
               />
             </div> */}
-            <div className="col-12 col-md-8 col-lg-5 mx-auto">
-              <div className="p-4 shadow-sm rounded bg-white">
-                <form onSubmit={formik.handleSubmit}>
-                  <span className="text-muted">CampusPay</span>
-                  <h2 className="mb-4 fw-light">Make Payments</h2>
-                  {/* Display income Err */}
-                  {expServerErr || expAppErr ? (
-                    <div className="alert alert-danger" role="alert">
-                      {expServerErr} {expAppErr}
-                    </div>
-                  ) : null}
-                  <div className="mb-3 input-group">
-                    {item ? (
-                      <>
-                        <i className="btn btn-success  w-100">{item}</i>
-                        <i className="btn btn-primary w-100">At</i>{" "}
-                        <i className="btn btn-success mb-4 w-100">{total}</i>
-                        {/* Err */}
-                        <div className="text-danger mb-2">
-                          {formik.touched.title && formik.errors.title}
-                        </div>
-                        <div className="mb-3 input-group">
-                          <input
-                            value={formik.values.description}
-                            onBlur={formik.handleBlur("description")}
-                            onChange={formik.handleChange("description")}
-                            className="form-control"
-                            type="text"
-                            placeholder="Enter Pin"
-                          />
-                        </div>
-                        {/* Err */}
-                        <div className="text-danger mb-2">
-                          {formik.touched.description &&
-                            formik.errors.description}
-                        </div>
-                        <div className="mb-3 input-group">
-                          {/* <input
+              <div className="col-12 col-md-8 col-lg-5 mx-auto">
+                <div className="p-4 shadow-sm rounded bg-white">
+                  <form onSubmit={formik.handleSubmit}>
+                    <span className="text-muted">CampusPay</span>
+                    <h2 className="mb-4 fw-light">Make Payments</h2>
+                    {/* Display income Err */}
+                    {expServerErr || expAppErr ? (
+                      <div className="alert alert-danger" role="alert">
+                        {expServerErr} {expAppErr}
+                      </div>
+                    ) : null}
+                    <div className="mb-3 input-group">
+                      {item ? (
+                        <>
+                          <i className="btn btn-success  w-100 disabled">
+                            {item}
+                          </i>
+                          <i className="btn btn-primary w-100 disabled">At</i>{" "}
+                          <i className="btn btn-success mb-4 w-100 disabled">
+                            {total}
+                          </i>
+                          {/* Err */}
+                          <div className="text-danger mb-2">
+                            {formik.touched.title && formik.errors.title}
+                          </div>
+                          <div className="mb-3 input-group">
+                            <input
+                              value={formik.values.description}
+                              onBlur={formik.handleBlur("description")}
+                              onChange={formik.handleChange("description")}
+                              className="form-control"
+                              type="text"
+                              placeholder="Enter Pin"
+                            />
+                          </div>
+                          {/* Err */}
+                          <div className="text-danger mb-2">
+                            {formik.touched.description &&
+                              formik.errors.description}
+                          </div>
+                          <div className="mb-3 input-group">
+                            {/* <input
                       value={cookieTotal}
                       onBlur={formik.handleBlur("amount")}
                       onChange={formik.handleChange("amount")}
@@ -233,17 +312,17 @@ const AddExpense = () => {
                       type="number"
                       disabled
                     /> */}
-                        </div>
-                        {/* Err */}
-                      </>
-                    ) : (
-                      <i className="btn btn-success  w-100">
-                        PLS visit Campus Store to Make A purchase
-                      </i>
-                    )}
-                    {/* <i className="btn btn-success">{total} </i>{" "} */}
-                    {/* <i className="btn btn-primary">Gh₵</i>{" "} */}
-                    {/* <input
+                          </div>
+                          {/* Err */}
+                        </>
+                      ) : (
+                        <i className="btn btn-success  w-100">
+                          PLS visit Campus Store to Make A purchase
+                        </i>
+                      )}
+                      {/* <i className="btn btn-success">{total} </i>{" "} */}
+                      {/* <i className="btn btn-primary">Gh₵</i>{" "} */}
+                      {/* <input
                       //value={formik.values.title}
                       value={cookieName}
                       onBlur={formik.handleBlur("title")}
@@ -253,39 +332,40 @@ const AddExpense = () => {
                       // placeholder="Enter reference"
                       disabled
                     /> */}
-                  </div>
+                    </div>
 
-                  <div className="text-danger mb-2">
-                    {formik.touched.amount && formik.errors.amount}
-                  </div>
-                  {expLoading ? (
-                    <DisabledButton />
-                  ) : (
-                    <>
-                      {item ? (
-                        <button
-                          type="submit"
-                          className="btn btn-danger mb-4 w-100"
-                        >
-                          Send
-                        </button>
-                      ) : (
-                        <a
-                          href="http://localhost:3000/shop"
-                          className="btn btn-danger mb-4 w-100"
-                        >
-                          visit
-                          {/* <button>visit</button> */}
-                        </a>
-                      )}
-                    </>
-                  )}
-                </form>
+                    <div className="text-danger mb-2">
+                      {formik.touched.amount && formik.errors.amount}
+                    </div>
+                    {expLoading ? (
+                      <DisabledButton />
+                    ) : (
+                      <>
+                        {item ? (
+                          <button
+                            type="submit"
+                            className="btn btn-danger mb-4 w-100"
+                          >
+                            Send
+                          </button>
+                        ) : (
+                          <a
+                            href="http://localhost:3000/shop"
+                            className="btn btn-danger mb-4 w-100"
+                          >
+                            visit
+                            {/* <button>visit</button> */}
+                          </a>
+                        )}
+                      </>
+                    )}
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

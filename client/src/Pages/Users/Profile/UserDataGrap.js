@@ -2,9 +2,9 @@ import { Doughnut, Pie } from "react-chartjs-2";
 
 import React from "react";
 
-const DataGrap = ({ income, expenses, fees }) => {
+const UserDataGrap = ({ income, expenses, fees }) => {
   const data1 = {
-    labels: ["Campus Store", "Deposit"],
+    labels: ["Store", "Wallet"],
     datasets: [
       {
         label: "# expenses",
@@ -30,7 +30,7 @@ const DataGrap = ({ income, expenses, fees }) => {
     ],
   };
   const data2 = {
-    labels: ["School Fees", "Income"],
+    labels: ["School Fees", "Wallet"],
     datasets: [
       {
         label: "# expenses",
@@ -68,7 +68,7 @@ const DataGrap = ({ income, expenses, fees }) => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
-          // marginTop: "40px",
+          marginLeft: "200px",
         }}
       >
         <Pie data={data1} />
@@ -78,4 +78,4 @@ const DataGrap = ({ income, expenses, fees }) => {
   );
 };
 
-export default DataGrap;
+export default UserDataGrap;

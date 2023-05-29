@@ -7,10 +7,10 @@ const User = require("../../model/user/User");
 //-------------------------------------
 const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
   const { description, title, amount } = req.body;
-  console.log("USER", req.user.email);
+  //console.log("USER", req.user.email);
   const email = req.user.email;
   const userFound = await User.findOne({ email });
-  console.log("USER", userFound);
+  //console.log("USER", userFound);
   if (userFound && (await userFound?.isPinMatched(description))) {
     try {
       const exp = await Fees.create({

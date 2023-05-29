@@ -17,17 +17,27 @@ const DashboardData = ({
   maxInc,
   numOfTransInc,
   netProfit,
+  numOfTransFees,
+  avgFees,
+  totalFees,
+  minFees,
+  maxFees,
 }) => {
   const dispatch = useDispatch();
   //format curr
-  const formattedTotalExp = useCurrencyFormatter("USD", totalExp);
-  const formattedTotalInc = useCurrencyFormatter("USD", totalInc);
-  const formattedNetProfit = useCurrencyFormatter("USD", netProfit);
+  const formattedTotalExp = useCurrencyFormatter("GHS", totalExp);
+  const formattedTotalInc = useCurrencyFormatter("GHS", totalInc);
+  const formattedAmtfees = useCurrencyFormatter("GHS", totalFees);
+  const formattedNetProfit = useCurrencyFormatter("GHS", netProfit);
   //format date
   return (
     <section class="py-6">
       <div class="container">
         {/* Grpah */}
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <h2 className="">Transactions</h2>
+        </div>
+
         <div
           style={{
             display: "flex",
@@ -37,26 +47,29 @@ const DashboardData = ({
           }}
         >
           {/* Grpah */}
-          <DataGrap income={totalInc} expenses={totalExp} />
+          <DataGrap income={totalInc} expenses={totalExp} fees={totalFees} />
         </div>
         {/* Net Profit */}
         <div style={{ textAlign: "center", margin: "20px" }}>
           <h2 className="text-success">Net Profit : {formattedNetProfit}</h2>
         </div>
+        {/* stats */}
+
         <div class="row">
-          <div class="col-12 col-md-6 mb-6">
-            <div class="p-8 border rounded-2">
+          <div class="col-12 col-md-4 mdivb-6">
+            <div class="p-0 border rounded-2">
               <div class="d-flex mb-6 align-items-start justify-content-between">
+                {/* class="d-flex mb-6 align-items-start justify-content-between" */}
                 <span
                   class="d-inline-flex align-items-center justify-content-center bg-light-light rounded-2"
                   style={{ width: "40px", height: "40px" }}
                 ></span>
                 {/* Expenses Start */}
-                <span class="badge fs-2 bg-light text-danger">
-                  Total Payments
+                <span class="badge fs-2 bg-primary-light text-primary">
+                  Campus Store
                 </span>
               </div>
-              <h1 class="mb-4">{formattedTotalExp}</h1>
+              <h1 class="mb-4 p-2">{formattedTotalExp}</h1>
               <p class="mb-0">
                 <span>Number of Transactions</span>
                 <span class="text-danger ms-1">
@@ -77,16 +90,18 @@ const DashboardData = ({
                   <span>{maxExp}</span>
                 </span>
               </p>
-
+              {/* 
               <p class="mb-0">
                 <span>Average Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{avgExp}</span>
                 </span>
-              </p>
+              </p> */}
             </div>
           </div>
-          <div class="col-12 col-md-6 mb-6">
+          {/* limit */}
+          {/* <div class="col-12 col-md-6 mb-6"> */}
+          <div class="col-12 col-md-4 mdivb-6">
             <div class="p-8 border rounded-2">
               <div class="d-flex mb-6 align-items-start justify-content-between">
                 <span
@@ -96,11 +111,62 @@ const DashboardData = ({
 
                 {/* Income Start */}
                 <span class="badge fs-2 bg-primary-light text-primary">
-                  Total deposites
+                  School Fees
                 </span>
               </div>
-              <h1 class="mb-4">{formattedTotalInc}</h1>
+              <h1 class="mb-4 p-2">{formattedAmtfees}</h1>
 
+              <p class="mb-0">
+                <span>Number of Transactions</span>
+                <span class="text-danger ms-1">
+                  <span>{numOfTransFees}</span>
+                </span>
+              </p>
+
+              <p class="mb-0">
+                <span>Minimum Transactions</span>
+                <span class="text-danger ms-1">
+                  <span>{minFees}</span>
+                </span>
+              </p>
+
+              <p class="mb-0">
+                <span>Maximum Transactions</span>
+                <span class="text-danger ms-1">
+                  <span>{maxFees}</span>
+                </span>
+              </p>
+
+              {/* <p class="mb-0">
+                <span>Average Transactions</span>
+                <span class="text-danger ms-1">
+                  <span>{avgFees}</span>
+                </span>
+              </p> */}
+            </div>
+          </div>
+          {/* limit */}
+          <div class="col-12 col-md-4 mdivb-6">
+            <div class="p-8 border rounded-2">
+              <div class="d-flex mb-6 align-items-start justify-content-between">
+                <span
+                  class="d-inline-flex align-items-center justify-content-center bg-danger-light rounded-2"
+                  style={{ width: "40px", height: "40px" }}
+                ></span>
+
+                {/* Income Start */}
+                <span class="badge fs-2 bg-primary-light text-primary">
+                  Deposits
+                </span>
+              </div>
+              <h1 class="mb-0 p-2">{formattedTotalInc}</h1>
+              {/* totalInc */}
+              <p class="mb-0">
+                <span>Total Transactions</span>
+                <span class="text-danger ms-1">
+                  <span>{totalInc}</span>
+                </span>
+              </p>
               <p class="mb-0">
                 <span>Number of Transactions</span>
                 <span class="text-danger ms-1">
@@ -114,27 +180,22 @@ const DashboardData = ({
                   <span>{minInc}</span>
                 </span>
               </p>
-
               <p class="mb-0">
                 <span>Maximum Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{maxInc}</span>
                 </span>
               </p>
-
-              <p class="mb-0">
+              {/* <p class="mb-0">
                 <span>Average Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{avgInc}</span>
                 </span>
-              </p>
+              </p> */}
             </div>
           </div>
-
-          <Link to="/incomes" className="nav-link active">
-            <button> Deposits List</button>
-          </Link>
         </div>
+        {/* stats */}
       </div>
     </section>
   );

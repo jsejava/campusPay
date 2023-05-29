@@ -21,7 +21,7 @@ const UpdateProfile = ({ location: { state: data } }) => {
   const dispatch = useDispatch();
 
   //users
-  const user = useSelector(state => state?.users);
+  const user = useSelector((state) => state?.users);
   const { userLoading, userAppErr, userServerErr, isUpdated } = user;
 
   const history = useHistory();
@@ -32,7 +32,7 @@ const UpdateProfile = ({ location: { state: data } }) => {
       lastname: data?.data?.lastname,
       email: data?.data?.email,
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       const user = {
         ...values,
         id: data?.data?.id,
@@ -56,8 +56,11 @@ const UpdateProfile = ({ location: { state: data } }) => {
                 <form onSubmit={formik.handleSubmit}>
                   <span className="text-muted">Update Profile</span>
                   <h4 className="mb-4 fw-light">
-                    Hi, {data?.data?.firstname} Do you want to update your
-                    profile
+                    <i>
+                      Hi,{" "}
+                      <b className="text-primary">{data?.data?.firstname}</b> Do
+                      you want to update your profile
+                    </i>
                   </h4>
 
                   {/* Display income Err */}

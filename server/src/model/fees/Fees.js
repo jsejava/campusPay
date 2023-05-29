@@ -9,7 +9,7 @@ const feesSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: "expense",
+      default: "fees",
     },
     description: {
       required: [true, "pin  is required"],

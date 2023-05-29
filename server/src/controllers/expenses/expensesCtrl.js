@@ -6,7 +6,7 @@ const User = require("../../model/user/User");
 //-------------------------------------
 const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
   const { description, title, amount } = req.body;
-  console.log("USER", req.user.email);
+  //console.log("USER", req.user.email);
   const email = req.user.email;
   const userFound = await User.findOne({ email });
   console.log("USER", userFound);

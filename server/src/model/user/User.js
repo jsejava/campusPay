@@ -56,6 +56,12 @@ userSchema.virtual("income", {
   foreignField: "user",
   localField: "_id",
 });
+//virtual method to populate created post
+userSchema.virtual("fees", {
+  ref: "Fees",
+  foreignField: "user",
+  localField: "_id",
+});
 
 //Hash password
 userSchema.pre("save", async function (next) {

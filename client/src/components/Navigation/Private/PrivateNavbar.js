@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+//import { useDispatch } from "react-redux";
 import { logoutAction } from "../../../redux/slices/users/usersSlices";
+import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 
 const PrivateNavbar = () => {
+  const users = useSelector((state) => state?.users);
+  const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
+  //console.log(profile);
   const dispatch = useDispatch();
   return (
     <>
@@ -37,6 +42,11 @@ const PrivateNavbar = () => {
                 </Link>
               </li> */}
               <li class="nav-item mb-2">
+                <Link to="/" className="btn  text-info me-2 disabled">
+                  Hi, {profile?.firstname}
+                </Link>
+              </li>
+              <li class="nav-item mb-2">
                 <Link to="/" className="btn  btn-outline-warning me-2">
                   Home
                 </Link>
@@ -68,9 +78,9 @@ const PrivateNavbar = () => {
               <Link to="/add-fees" className="btn btn-info me-2">
                 School Fees
               </Link>
-              <Link to="/add-income" className="btn btn-success me-2">
+              {/* <Link to="/add-income" className="btn btn-success me-2">
                 Activate Wallet
-              </Link>
+              </Link> */}
               <button
                 onClick={() => dispatch(logoutAction())}
                 className="btn btn-warning me-2"

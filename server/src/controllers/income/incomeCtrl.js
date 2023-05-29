@@ -6,7 +6,7 @@ const Income = require("../../model/income/Income");
 //-------------------------------------
 const createIncome = expressAsyncHandler(async (req, res) => {
   const { description, title, amount } = req.body;
-  console.log("okay");
+
   try {
     const income = await Income.create({
       description,
@@ -22,8 +22,8 @@ const createIncome = expressAsyncHandler(async (req, res) => {
 
 const addIncome = expressAsyncHandler(async (req, res) => {
   const { description, title, amount, id } = req.body;
-  console.log(req?.user?._id);
-  console.log(id);
+  // console.log(req?.user?._id);
+  // console.log(id);
   try {
     const income = await Income.create({
       description,

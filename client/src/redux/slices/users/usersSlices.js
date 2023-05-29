@@ -80,6 +80,31 @@ export const logoutAction = createAsyncThunk(
   }
 );
 // Profile
+export const userAction = createAsyncThunk(
+  "user/profile",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    //get user token
+    const user = getState()?.users;
+    const { userAuth } = user;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    //http call
+    try {
+      const { data } = await axios.get(`${baseUrl}/api/users/`, config);
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+// Profile
 export const userProfileAction = createAsyncThunk(
   "user/profile",
   async (id, { rejectWithValue, getState, dispatch }) => {
@@ -151,7 +176,7 @@ const usersSlices = createSlice({
   initialState: {
     userAuth: userLoginFromStorage,
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     //register
     builder.addCase(registerUserAction.pending, (state, action) => {
       state.userLoading = true;

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import moneySVG from "../../img/money.svg";
 import { useHistory } from "react-router-dom";
-import { addNewExpAction } from "../../redux/slices/expenses/expenseAction";
+//import { addNewExpAction } from "../../redux/slices/expenses/expenseAction";
+import { addNewExpAction } from "../../redux/slices/fees/feesAction";
 import DisabledButton from "../../components/DisabledButton";
 import redirectUser from "../../utils/redirect";
 import navigate from "../../utils/navigate";
@@ -125,10 +126,11 @@ const AddFees = () => {
 
   useEffect(() => {
     if (isExpCreated) {
-      document.cookie = `total=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure;path=/add-expense`;
-      document.cookie = `item=; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/add-expense`;
+      navigate(history, "user-profile-fees", undefined);
+      // document.cookie = `total=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure;path=/add-expense`;
+      // document.cookie = `item=; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/add-expense`;
       // //navigate(history, "user-profile-expenses", undefined);
-      window.location.replace("http://localhost:3000/ConfOrder");
+      // window.location.replace("http://localhost:3000/ConfOrder");
       // console.log("wallet", incResult);
       // console.log("amount", amount);
     }
@@ -166,33 +168,19 @@ const AddFees = () => {
       <section className="py-5 bg-danger vh-100">
         <div className="container text-center">
           <a className="d-inline-block mb-5">
-            {/* <img
+            <img
               className="img-fluid"
               src={moneySVG}
               alt="SVGeXPENSES"
               width="200"
-            /> */}
+            />
           </a>
           <div className="row mb-4">
-            {/* <div className="col-12 col-md-8 col-lg-5 mx-auto">
-              <UserProfileStats
-                numOfTransExp={profile?.expenses?.length}
-                avgExp={expResult?.avg}
-                totalExp={expResult?.sumTotal}
-                minExp={expResult?.min}
-                maxExp={expResult?.max}
-                numOfTransInc={profile?.income?.length}
-                avgInc={incResult?.avg}
-                totalInc={incResult?.sumTotal}
-                minInc={incResult?.min}
-                maxInc={incResult?.max}
-              />
-            </div> */}
             <div className="col-12 col-md-8 col-lg-5 mx-auto">
               <div className="p-4 shadow-sm rounded bg-white">
                 <form onSubmit={formik.handleSubmit}>
-                  <span className="text-muted">CampusPay</span>
-                  <h2 className="mb-4 fw-light">Fees Payments</h2>
+                  <span className="text-muted">Campus Pay</span>
+                  <h2 className="mb-4 fw-light">Pay School Fees</h2>
                   {/* Display income Err */}
                   {expServerErr || expAppErr ? (
                     <div className="alert alert-danger" role="alert">
@@ -200,49 +188,44 @@ const AddFees = () => {
                     </div>
                   ) : null}
                   <div className="mb-3 input-group">
-                    {/* <i className="btn btn-success  w-100">{item}</i>
-                    <i className="btn btn-primary w-100">At</i>{" "}
-                    <i className="btn btn-success mb-4 w-100">{total}</i> */}
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.title && formik.errors.title}
-                    </div>
-                    <div className="mb-3 input-group">
-                      <input
-                        value={formik.values.description}
-                        onBlur={formik.handleBlur("description")}
-                        onChange={formik.handleChange("description")}
-                        className="form-control"
-                        type="text"
-                        placeholder="Enter Index Nber"
-                      />
-                    </div>
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.description && formik.errors.description}
-                    </div>
-                    <div className="mb-3 input-group">
-                      <input
-                        value=""
-                        onBlur={formik.handleBlur("amount")}
-                        onChange={formik.handleChange("amount")}
-                        className="form-control"
-                        type="number"
-                        placeholder="Enter Pin"
-                      />
-                    </div>
-                    {/* Err */}
                     <input
                       value={formik.values.title}
-                      // value={}
                       onBlur={formik.handleBlur("title")}
                       onChange={formik.handleChange("title")}
                       className="form-control"
                       type="text"
+                      placeholder="Enter ID Number"
+                    />
+                  </div>
+                  {/* Err */}
+                  <div className="text-danger mb-2">
+                    {formik.touched.title && formik.errors.title}
+                  </div>
+                  <div className="mb-3 input-group">
+                    <input
+                      value={formik.values.description}
+                      onBlur={formik.handleBlur("description")}
+                      onChange={formik.handleChange("description")}
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter PIN"
+                    />
+                  </div>
+                  {/* Err */}
+                  <div className="text-danger mb-2">
+                    {formik.touched.description && formik.errors.description}
+                  </div>
+                  <div className="mb-3 input-group">
+                    <input
+                      value={formik.values.amount}
+                      onBlur={formik.handleBlur("amount")}
+                      onChange={formik.handleChange("amount")}
+                      className="form-control"
+                      type="number"
                       placeholder="Enter Amount"
                     />
                   </div>
-
+                  {/* Err */}
                   <div className="text-danger mb-2">
                     {formik.touched.amount && formik.errors.amount}
                   </div>

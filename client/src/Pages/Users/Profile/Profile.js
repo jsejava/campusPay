@@ -10,10 +10,12 @@ import DataGraph from "../../../components/Dashboard/DataGrap";
 import useDateFormatter from "../../../hooks/useDateFormatter";
 import LoadingComponent from "../../../components/Loading/Loading";
 import ErrorDisplayMessage from "../../../components/ErrorDisplayMessage";
+import UserDataGrap from "./UserDataGrap";
 
 const Profile = () => {
   const [expResult, setExpResult] = useState([]);
   const [incResult, setIncResult] = useState([]);
+  const [feeResult, setFeeResult] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(userProfileAction());
@@ -22,7 +24,7 @@ const Profile = () => {
   const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
-  // console.log(profile.expenses);
+  console.log(profile);
 
   //income
   useEffect(() => {
@@ -33,6 +35,10 @@ const Profile = () => {
     if (profile?.income) {
       const income = calTransaction(profile?.income);
       setIncResult(income);
+    }
+    if (profile?.fees) {
+      const fees = calTransaction(profile?.fees);
+      setFeeResult(fees);
     }
     //   if (profile?.income) {
     //   const income = calWallet(profile?.income, profile?.expenses);
@@ -108,12 +114,29 @@ const Profile = () => {
                     <i class="bi bi-pen fs-3 m-3 text-primary"></i>
                   </button>
                 </div>
-                <DataGraph
-                  income={incResult?.sumTotal}
+                {/* <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "20px",
+                 }}
+                > */}
+                <UserDataGrap
+                  income={
+                    incResult?.sumTotal -
+                    (expResult?.sumTotal + feeResult?.sumTotal)
+                  }
+                  //income={incResult?.sumTotal}
                   expenses={expResult?.sumTotal}
+                  fees={feeResult?.sumTotal}
+                  // fees={
+                  //   incResult?.sumTotal -
+                  //   (expResult?.sumTotal + feeResult?.sumTotal)
+                  // }
                 />
+                {/* </div> */}
               </div>
-
               <p className="mb-8"> </p>
 
               <UserProfileStats
@@ -124,22 +147,37 @@ const Profile = () => {
                 maxExp={expResult?.max}
                 numOfTransInc={profile?.income?.length}
                 avgInc={incResult?.avg}
-                totalInc={incResult?.sumTotal - expResult?.sumTotal}
+                wallet={
+                  incResult?.sumTotal -
+                  (expResult?.sumTotal + feeResult?.sumTotal)
+                }
+                totalInc={incResult?.sumTotal}
                 minInc={incResult?.min}
                 maxInc={incResult?.max}
+                numOfTransFees={profile?.fees?.length}
+                avgFees={feeResult?.avg}
+                totalFees={feeResult?.sumTotal}
+                minFees={feeResult?.min}
+                maxFees={feeResult?.max}
               />
               <div className="d-flex align-items-center justify-content-center">
                 <button
                   onClick={() => navigate(history, "user-profile-expenses", "")}
-                  className="btn me-4 w-100 btn-danger d-flex align-items-center justify-content-center"
+                  className="btn me-4 w-100 btn-outline-danger d-flex align-items-center justify-content-center"
                 >
-                  <span>View Payments History</span>
+                  <span>History</span>
+                </button>
+                <button
+                  onClick={() => navigate(history, "user-profile-fees", "")}
+                  className="btn me-4 w-100 btn-outline-info d-flex align-items-center justify-content-center"
+                >
+                  <span>History</span>
                 </button>
                 <button
                   onClick={() => navigate(history, "user-profile-income", "")}
                   className="btn w-100 btn-outline-success d-flex align-items-center justify-content-center"
                 >
-                  <span>View Deposits History</span>
+                  <span>History</span>
                 </button>
               </div>
             </div>

@@ -7,13 +7,13 @@ const AdminNavbar = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div className="container-fluid">
           <Link to="/" className="navbar-brand">
-            <i class="bi bi-currency-exchange fs-1 text-warning "></i>
+            <i className="bi bi-currency-exchange fs-1 text-warning "></i>
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -21,40 +21,49 @@ const AdminNavbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link to="/expenses" className="btn  btn-outline-warning me-2">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item mb-2">
+                <Link to="/" className="btn  text-info me-2 disabled">
+                  Hi, Administration
+                </Link>
+              </li>
+
+              <li className="nav-item mb-2">
+                <Link to="/dashboard" className="btn btn-outline-danger me-2">
+                  Admin Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/expenses" className="btn btn-outline-warning me-2">
                   Payments List
                 </Link>
               </li>
 
-              <li class="nav-item">
-                <Link to="/incomes" className="btn  btn-outline-primary me-2">
+              <li className="nav-item">
+                <Link to="/fees" className="btn btn-outline-primary me-2">
+                  school fees List
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/incomes" className="btn btn-outline-warning me-2">
                   Deposits List
                 </Link>
               </li>
 
-              <li class="nav-item mb-2">
-                <Link to="/dashboard" className="btn  btn-outline-warning me-2">
-                  Admin Dashboard
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/profile" className="btn  btn-outline-primary me-2">
-                  User Dashboard
+              <li className="nav-item">
+                <Link
+                  to="/edit-wallet"
+                  className="btn btn-outline-primary me-2"
+                >
+                  Load Wallet
                 </Link>
               </li>
             </ul>
-            <form class="d-flex">
-              <Link to="/add-expense" className="btn btn-danger me-2">
-                Make Payments
-              </Link>
-              {/* <Link to="/add-income" className="btn btn-success me-2">
-                Activate Wallet
-              </Link> */}
+            <form className="d-flex">
               <button
                 onClick={() => dispatch(logoutAction())}
                 className="btn btn-warning me-2"

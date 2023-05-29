@@ -27,6 +27,7 @@ export const addNewIncomeAction = createAsyncThunk(
           title: income?.title,
           description: income?.description,
           amount: income?.amount,
+          type: income?.type,
         },
         config
       );

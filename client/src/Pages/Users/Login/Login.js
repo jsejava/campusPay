@@ -22,6 +22,12 @@ const Login = () => {
   const users = useSelector((state) => state?.users);
 
   const { userAuth, userLoading, userAppErr, userServerErr, isLogin } = users;
+  //const { userLoading, userAppErr, userServerErr, isLogin } = users;
+  // const user = useSelector((state) => state?.users);
+  // const { userAuth } = user;
+  //console.log(isLogin);
+  // console.log(userAuth);
+
   //initialize form
   const formik = useFormik({
     initialValues: {
@@ -34,12 +40,23 @@ const Login = () => {
     validationSchema: formSchema,
   });
 
+  const x = localStorage.getItem("userInfo");
+
+  const y = JSON.parse(x);
+  const adminAuth = y?.isAdmin;
+  console.log(adminAuth);
+
   //Redirect
   useEffect(() => {
     if (isLogin) {
-      navigate(history, "profile", undefined);
+      // navigate(history, "profile", undefined);
+      adminAuth
+        ? navigate(history, "dashboard", undefined)
+        : navigate(history, "profile", undefined);
     }
+    //dashboard
   }, [isLogin]);
+
   return (
     <section
       style={{ height: "100vh" }}

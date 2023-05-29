@@ -6,11 +6,11 @@ import ErrorDisplayMessage from "../../components/ErrorDisplayMessage";
 import LoadingComponent from "../../components/Loading/Loading";
 
 import AppPagination from "../../components/Pagination/AppPagination";
-import { fetchExpensesAction } from "../../redux/slices/expenses/expenseAction";
+import { fetchExpensesAction } from "../../redux/slices/fees/feesAction";
 import { userProfileAction } from "../../redux/slices/users/usersSlices";
 import calTransaction from "../../utils/accStatistics";
 
-const ExpensesList = () => {
+const FeesList = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -48,9 +48,10 @@ const ExpensesList = () => {
                 href="#"
               ></a>
               <div className="pt-8 px-8 mb-8">
-                <h6 className="mb-0 fs-3">CampusPay transactions</h6>
+                <h6 className="mb-0 fs-3">School Fees transactions</h6>
                 <p className="mb-0">
-                  Below is the history of payments transactions records
+                  Below is the history of School Fees payments transactions
+                  records
                 </p>
                 {/* <Link
                   to="/add-expense"
@@ -129,4 +130,4 @@ const ExpensesList = () => {
   );
 };
 
-export default ExpensesList;
+export default FeesList;

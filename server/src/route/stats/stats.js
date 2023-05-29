@@ -1,11 +1,13 @@
 const express = require("express");
 const {
-  accountStatsCtrl,
+  // accountStatsCtrl,
+  accountsStatsCtrl,
 } = require("../../controllers/accountStatsCtrl/accountStatsCtrl");
 
 const authMiddleware = require("../../middlewares/auth/authMiddleware");
 
 const accountStatsRoute = express.Router();
 
-accountStatsRoute.get("/", accountStatsCtrl);
+accountStatsRoute.get("/", accountsStatsCtrl);
+// accountStatsRoute.get("/:id", accountStatsCtrl);
 module.exports = accountStatsRoute;

@@ -13,6 +13,7 @@ import ExpensesList from "./Pages/Expenses/ExpensesList";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 import EditContent from "./components/EditContent/EditContent";
+import EditWallet from "./components/EditWallet/EditWallet";
 import UserProfileExpList from "./Pages/Users/Profile/UserProfileExpList";
 import UserProfileIncList from "./Pages/Users/Profile/UserProfileIncList";
 import UpdateProfile from "./Pages/Users/Profile/UpdateProfile";
@@ -23,6 +24,8 @@ import AdminRoute from "./components/Navigation/AdminRoute";
 import NotAdmin from "./components/NotAdmin/NotAdmin";
 import AdNavbar from "./components/Navigation/AdNavbar";
 import AddFees from "./Pages/fees/AddFees";
+import UserProfileFeesList from "./Pages/Users/Profile/UserProfileFeesList";
+import FeesList from "./Pages/fees/FeesList";
 
 const options = {
   timeout: 50000,
@@ -37,7 +40,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           {/* <Route exact path="/" component={AdminNavbar} /> */}
-          <AdminRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateProtectRoute exact path="/dashboard" component={Dashboard} />
           <PrivateProtectRoute
             exact
             path="/user-profile-expenses"
@@ -45,18 +48,27 @@ const App = () => {
           />
           <PrivateProtectRoute
             exact
+            path="/user-profile-fees"
+            component={UserProfileFeesList}
+          />
+          {/* UserProfileFeesList */}
+          <PrivateProtectRoute
+            exact
             path="/user-profile-income"
             component={UserProfileIncList}
           />
           <Route exact path="/not-admin" component={NotAdmin} />
-
           <PrivateProtectRoute
             exact
             path="/update-profile"
             component={UpdateProfile}
           />
-
           <PrivateProtectRoute exact path="/edit" component={EditContent} />
+          <PrivateProtectRoute
+            exact
+            path="/edit-wallet"
+            component={EditWallet}
+          />
           {/* <PrivateProtectRoute
             exact
             path="/user-expenses"
@@ -69,7 +81,6 @@ const App = () => {
           />
           <PrivateProtectRoute exact path="/add-fees" component={AddFees} />
           <PrivateProtectRoute exact path="/add-income" component={AddIncome} />
-
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateProtectRoute exact path="/profile" component={Profile} />
@@ -79,6 +90,7 @@ const App = () => {
             path="/expenses"
             component={ExpensesList}
           />
+          <PrivateProtectRoute exact path="/fees" component={FeesList} />
         </Switch>
       </BrowserRouter>
     </Provider>

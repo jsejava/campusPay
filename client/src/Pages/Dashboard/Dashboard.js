@@ -17,7 +17,7 @@ const Dashboard = () => {
   const inc = stats?.incomeStats[0];
   const fees = stats?.feesStats[0];
   // const fees = stats?.feesStats[0];
-  console.log({ fees });
+  // console.log({ fees });
   return (
     <>
       {/* <h1>NET: {stats?.profit}</h1>

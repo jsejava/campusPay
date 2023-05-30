@@ -7,6 +7,7 @@ const { errorHandler, notFound } = require("./middlewares/error/errorHandler");
 const incomeRoute = require("./route/income/income");
 const feesRoute = require("./route/fees/fees");
 const expenseRoute = require("./route/expense/expense");
+const walletRoute = require("./route/wallet/wallet");
 const accountStatsRoute = require("./route/stats/stats");
 // dotenv;
 dotenv.config();
@@ -34,6 +35,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/incomes", incomeRoute);
 //Expenses
 app.use("/api/expenses", expenseRoute);
+//Wallet
+app.use("/api/wallet", walletRoute);
 //Fess
 app.use("/api/fees", feesRoute);
 //stats

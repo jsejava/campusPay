@@ -24,7 +24,7 @@ const Profile = () => {
   const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
-  console.log(profile);
+  // console.log(profile);
 
   //income
   useEffect(() => {
@@ -147,10 +147,6 @@ const Profile = () => {
                 maxExp={expResult?.max}
                 numOfTransInc={profile?.income?.length}
                 avgInc={incResult?.avg}
-                wallet={
-                  incResult?.sumTotal -
-                  (expResult?.sumTotal + feeResult?.sumTotal)
-                }
                 totalInc={incResult?.sumTotal}
                 minInc={incResult?.min}
                 maxInc={incResult?.max}
@@ -159,6 +155,10 @@ const Profile = () => {
                 totalFees={feeResult?.sumTotal}
                 minFees={feeResult?.min}
                 maxFees={feeResult?.max}
+                netProfit={
+                  incResult?.sumTotal -
+                  (expResult?.sumTotal + feeResult?.sumTotal)
+                }
               />
               <div className="d-flex align-items-center justify-content-center">
                 <button

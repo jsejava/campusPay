@@ -12,7 +12,7 @@ const validateMongodbId = require("../../utils/validateMongodbID");
 const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
   //Check if user Exist
   const userExists = await User.findOne({ email: req?.body?.email });
-
+  console.log(req.body);
   if (userExists) throw new Error("User already exists");
   try {
     //Register user
@@ -22,6 +22,7 @@ const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
       email: req?.body?.email,
       password: req?.body?.password,
       pin: req?.body?.pin,
+      Wallet: req?.body?.Wallet,
     });
     res.json(user);
   } catch (error) {
@@ -117,6 +118,27 @@ const userProfileCtrl = expressAsyncHandler(async (req, res) => {
 });
 
 //------------------------------
+//Update Wallet
+//------------------------------
+const updateUserWalletCtrl = expressAsyncHandler(async (req, res) => {
+  console.log("Bakeng Wallet Updated...............");
+  const { id } = req.body;
+
+  validateMongodbId(id);
+  const user = await User.findByIdAndUpdate(
+    id,
+    {
+      Wallet: req?.body?.Wallet,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  res.json(user);
+});
+
+//------------------------------
 //Update profile
 //------------------------------
 const updateUserCtrl = expressAsyncHandler(async (req, res) => {
@@ -128,6 +150,7 @@ const updateUserCtrl = expressAsyncHandler(async (req, res) => {
       firstname: req?.body?.firstname,
       lastname: req?.body?.lastname,
       email: req?.body?.email,
+      Wallet: req?.body?.Wallet,
     },
     {
       new: true,
@@ -166,5 +189,6 @@ module.exports = {
   fetchUserDetailsCtrl,
   userProfileCtrl,
   updateUserCtrl,
+  updateUserWalletCtrl,
   updateUserPasswordCtrl,
 };

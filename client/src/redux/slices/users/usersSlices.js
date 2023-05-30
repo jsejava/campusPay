@@ -130,10 +130,46 @@ export const userProfileAction = createAsyncThunk(
   }
 );
 
+//Update wallet
+export const updateUserWalletAction = createAsyncThunk(
+  "users/update",
+  async (userData, { rejectWithValue, getState, dispatch }) => {
+    //console.log("userData", userData);
+    //get user token
+    const user = getState()?.users;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    //http call
+    try {
+      const { data } = await axios.put(
+        `${baseUrl}/api/users/wallet`,
+        {
+          id: userData?.id,
+          Wallet: userData?.Wallet,
+        },
+        config
+      );
+      //dispatch
+      dispatch(resetUserUpdated());
+      return data;
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //Update action
 export const updateUserAction = createAsyncThunk(
   "users/update",
   async (userData, { rejectWithValue, getState, dispatch }) => {
+    console.log("userData", userData);
     //get user token
     const user = getState()?.users;
     const { userAuth } = user;
@@ -150,6 +186,7 @@ export const updateUserAction = createAsyncThunk(
           lastname: userData?.lastname,
           firstname: userData?.firstname,
           email: userData?.email,
+          Wallet: userData?.Wallet,
         },
         config
       );
@@ -234,12 +271,6 @@ const usersSlices = createSlice({
       state.userAppErr = action?.payload?.message;
       state.userServerErr = action?.error?.message;
       state.userLoading = false;
-    });
-    // Profile
-    builder.addCase(userProfileAction.pending, (state, action) => {
-      state.userLoading = true;
-      state.userAppErr = undefined;
-      state.userServerErr = undefined;
     });
 
     builder.addCase(userProfileAction.fulfilled, (state, action) => {

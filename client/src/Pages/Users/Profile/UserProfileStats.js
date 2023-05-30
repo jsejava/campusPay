@@ -18,17 +18,22 @@ const UserProfileStats = ({
   totalFees,
   minFees,
   maxFees,
-  wallet,
+  netProfit,
 }) => {
   //format curr
   const formattedAmt = useCurrencyFormatter("GHS", totalExp);
-  const formattedAmtInc = useCurrencyFormatter("GHS", wallet);
+  const formattedAmtInc = useCurrencyFormatter("GHS", totalInc);
   const formattedAmtfees = useCurrencyFormatter("GHS", totalFees);
+  const formattedNetProfit = useCurrencyFormatter("GHS", netProfit);
   //format date
 
   return (
     <section class="py-6">
       <div class="container">
+        {/* Net Profit */}
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <h2 className="text-success">Wallet : {formattedNetProfit}</h2>
+        </div>
         <div class="row">
           <div class="col-12 col-md-4 mdivb-6">
             <div class="p-0 border rounded-2">
@@ -43,7 +48,7 @@ const UserProfileStats = ({
                   Campus Store
                 </span>
               </div>
-              <h1 class="mb-4 p-2">{formattedAmt}</h1>
+              <h1 class="mb-0 p-2">{formattedAmt}</h1>
               <p class="mb-0">
                 <span>Number of Transactions</span>
                 <span class="text-danger ms-1">
@@ -64,13 +69,13 @@ const UserProfileStats = ({
                   <span>{maxExp}</span>
                 </span>
               </p>
-              {/* 
+
               <p class="mb-0">
                 <span>Average Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{avgExp}</span>
                 </span>
-              </p> */}
+              </p>
             </div>
           </div>
           {/* limit */}
@@ -88,7 +93,7 @@ const UserProfileStats = ({
                   School Fees
                 </span>
               </div>
-              <h1 class="mb-4 p-2">{formattedAmtfees}</h1>
+              <h1 class="mb-0 p-2">{formattedAmtfees}</h1>
 
               <p class="mb-0">
                 <span>Number of Transactions</span>
@@ -111,12 +116,12 @@ const UserProfileStats = ({
                 </span>
               </p>
 
-              {/* <p class="mb-0">
+              <p class="mb-0">
                 <span>Average Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{avgFees}</span>
                 </span>
-              </p> */}
+              </p>
             </div>
           </div>
           {/* limit */}
@@ -130,17 +135,17 @@ const UserProfileStats = ({
 
                 {/* Income Start */}
                 <span class="badge fs-2 bg-primary-light text-primary">
-                  Wallet
+                  Deposits
                 </span>
               </div>
               <h1 class="mb-0 p-2">{formattedAmtInc}</h1>
               {/* totalInc */}
-              <p class="mb-0">
+              {/* <p class="mb-0">
                 <span>Total Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{totalInc}</span>
                 </span>
-              </p>
+              </p> */}
               <p class="mb-0">
                 <span>Number of Transactions</span>
                 <span class="text-danger ms-1">
@@ -160,12 +165,12 @@ const UserProfileStats = ({
                   <span>{maxInc}</span>
                 </span>
               </p>
-              {/* <p class="mb-0">
+              <p class="mb-0">
                 <span>Average Transactions</span>
                 <span class="text-danger ms-1">
                   <span>{avgInc}</span>
                 </span>
-              </p> */}
+              </p>
             </div>
           </div>
         </div>

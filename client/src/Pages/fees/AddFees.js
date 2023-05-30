@@ -91,12 +91,12 @@ const AddFees = () => {
     onSubmit: (values) => {
       // console.log("wallet", incResult.sumTotal);
       // console.log("amount", values.amount);
-      const wallet = incResult.sumTotal;
-      const amount = values.amount;
-      if (amount > wallet) {
-        window.alert("insuffisance wallet");
-        return;
-      }
+      // const wallet = incResult.sumTotal;
+      // const amount = values.amount;
+      // if (amount > wallet) {
+      //   window.alert("insuffisance wallet");
+      //   return;
+      // }
       dispatch(addNewExpAction(values));
     },
     validationSchema: formSchema,

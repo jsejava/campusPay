@@ -7,6 +7,8 @@ import SuccessMessage from "../../../components/SuccessMessage";
 import ErrorDisplayMessage from "../../../components/ErrorDisplayMessage";
 import DisabledButton from "../../../components/DisabledButton";
 
+import { addNewWalAction } from "../../../redux/slices/wallet/walletAction";
+
 //Form validation
 const formSchema = Yup.object({
   email: Yup.string().required("Email is required"),
@@ -23,6 +25,9 @@ const Register = ({ history }) => {
   const users = useSelector((state) => state?.users);
   const { userLoading, userAppErr, userServerErr, isRegistered, registered } =
     users;
+
+  console.log("isRegistered", isRegistered);
+  console.log("registered", registered);
   //initialize form
   const formik = useFormik({
     initialValues: {
@@ -31,9 +36,12 @@ const Register = ({ history }) => {
       firstname: "",
       lastname: "",
       pin: "",
+      amount: 5,
     },
     onSubmit: (values) => {
+      console.log(values);
       dispatch(registerUserAction(values));
+      // dispatch(addNewWalAction(values));
     },
     validationSchema: formSchema,
   });
@@ -42,6 +50,7 @@ const Register = ({ history }) => {
   setTimeout(() => {
     if (isRegistered) history.push("/profile");
   }, 3000);
+  //console.log(isRegistered);
   return (
     <section className="position-relative py-5 overflow-hidden vh-100">
       <div className="d-none d-md-block position-absolute top-0 start-0 bg-dark w-75 h-100"></div>

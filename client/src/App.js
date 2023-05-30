@@ -26,6 +26,8 @@ import AdNavbar from "./components/Navigation/AdNavbar";
 import AddFees from "./Pages/fees/AddFees";
 import UserProfileFeesList from "./Pages/Users/Profile/UserProfileFeesList";
 import FeesList from "./Pages/fees/FeesList";
+import Balance from "./Pages/Expenses/Balance";
+import Paysuccess from "./components/Alert/Paysuccess";
 
 const options = {
   timeout: 50000,
@@ -36,6 +38,7 @@ const App = () => {
   return (
     <Provider template={AlertTemplate} {...options}>
       <BrowserRouter>
+        <Balance />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -91,6 +94,11 @@ const App = () => {
             component={ExpensesList}
           />
           <PrivateProtectRoute exact path="/fees" component={FeesList} />
+          <PrivateProtectRoute
+            exact
+            path="/success-payement"
+            component={Paysuccess}
+          />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -8,19 +8,27 @@ const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
   const { description, title, amount } = req.body;
   //console.log("USER", req.user.email);
   const email = req.user.email;
+  const Wallet = req.user.Wallet;
   const userFound = await User.findOne({ email });
-  console.log("USER", userFound);
+  const wallet = await User.findOne({ Wallet });
+  console.log("amount", amount);
+  console.log("wallet", wallet.Wallet);
   if (userFound && (await userFound?.isPinMatched(description))) {
-    try {
-      const exp = await Expense.create({
-        description,
-        title,
-        amount,
-        user: req?.user?._id,
-      });
-      res.json(exp);
-    } catch (error) {
-      res.json(error);
+    if (wallet && (await wallet.Wallet) > amount) {
+      try {
+        const exp = await Expense.create({
+          description,
+          title,
+          amount,
+          user: req?.user?._id,
+        });
+        res.json(exp);
+      } catch (error) {
+        res.json(error);
+      }
+    } else {
+      res.status(401);
+      throw new Error("insuffisance balance");
     }
   } else {
     res.status(401);

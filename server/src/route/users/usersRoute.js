@@ -5,6 +5,7 @@ const {
   fetchUsersCtrl,
   userProfileCtrl,
   updateUserCtrl,
+  updateUserWalletCtrl,
   deleteUsersCtrl,
   fetchUserDetailsCtrl,
 } = require("../../controllers/users/usersCtrl");
@@ -18,7 +19,9 @@ userRoutes.post("/login", loginUserCtrl);
 
 userRoutes.get("/", authMiddleware, fetchUsersCtrl);
 userRoutes.get("/profile/", authMiddleware, userProfileCtrl);
+userRoutes.put("/wallet/", updateUserWalletCtrl);
 userRoutes.put("/:id", authMiddleware, updateUserCtrl);
+userRoutes.put("/wallet/", updateUserWalletCtrl);
 userRoutes.delete("/:id", deleteUsersCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
 

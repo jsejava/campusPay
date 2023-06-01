@@ -139,7 +139,7 @@ const AddExpense = () => {
       // <Balance />;
       //Redirect
       setTimeout(() => {
-        window.location.replace("http://localhost:3000/ConfOrder");
+        window.location.replace("http://localhost:3001/ConfOrder");
       }, 3000);
 
       // console.log("wallet", incResult);

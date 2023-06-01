@@ -15,7 +15,14 @@ const PrivateNavbar = () => {
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
           <Link to="/" className="navbar-brand">
-            <i class="bi bi-currency-exchange fs-1 text-warning "></i>
+            <img
+              style={{
+                borderRadius: "50px",
+              }}
+              alt="logo"
+              src="/logo/camPay1.png"
+              width="30"
+            />
           </Link>
           <button
             class="navbar-toggler"

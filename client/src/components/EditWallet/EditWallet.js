@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
@@ -7,10 +7,12 @@ import moneySVG from "../../img/money.svg";
 import ErrorDisplayMessage from "../ErrorDisplayMessage";
 import SuccessMessage from "../SuccessMessage";
 import { updateExpenseAction } from "../../redux/slices/expenses/expenseAction";
-
+// import {
+//   userAction,
+//   userProfileAction,
+// } from "../../redux/slices/users/usersSlices";
 import {
   userAction,
-  updateUserWalletAction,
   userProfileAction,
 } from "../../redux/slices/users/usersSlices";
 import { addNew } from "../../redux/slices/income/incomeSlices";
@@ -19,6 +21,7 @@ import redirectUser from "../../utils/redirect";
 import navigate from "../../utils/navigate";
 import CustomSelect from "./CustomSelect";
 import LoadingComponent from "../Loading/Loading";
+//import Selector from "./Selector";
 
 //Form validation
 const formSchema = Yup.object({
@@ -28,23 +31,50 @@ const formSchema = Yup.object({
   amount: Yup.number().required("Amount is required"),
 });
 const EditWallet = () => {
-  const [expResult, setExpResult] = useState([]);
-  const [incResult, setIncResult] = useState([]);
-
-  const user = useSelector((state) => state.users);
-  const users = useSelector((state) => state?.users);
-  const { profile, userLoading, userAppErr, userServerErr } = user;
-  //const { profiles, userLoading, userAppErr, userServerErr, userAuth } = users;
-  //ßconsole.log(users);
-
-  //console.log(profile);
-  useEffect(() => {
-    // dispatch(userProfileAction());
-    dispatch(userAction());
-  }, []);
-
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.users);
+  const { profile, userLoading, userAppErr, userServerErr } = user;
+  //console.log(profile);
+  // const item = Object.values(profile);
+  // console.log(item);
+  useEffect(() => {
+    dispatch(userAction());
+  }, [dispatch]);
+  // let score;
+  // for (score of profile) {
+  //   console.log(score);
+  // }
+  // console.log(profile);
+  // const item = Object.values(profile);
+  // console.log(item);
+  // dispatch(userAction());
+  //console.log(profile);
+  // let items;
+  // if (profile) {
+  //   items = profile?.map((item) => ({
+  //     id: item._id,
+  //     fname: item.firstname,
+  //     lname: item.lastname,
+  //   }));
+  // } else {
+  // }
+
+  // let names = "";
+  // items?.forEach((element, index, array) => {
+  //   names += element.lname + " ";
+  // });
+
+  // for (let index = 0; index < items?.length; index++) {
+  //   const element = items[index];
+  //   console.log(element.lname);
+  // }
+  //console.log("profile", profile);
+  // console.log("name", items);
+  // const { data } = state;
+  // console.log("data", data?.user._id);
+  //dispatch action
+  //history
 
   //expense
   const expenses = useSelector((state) => state?.expenses);
@@ -53,7 +83,6 @@ const EditWallet = () => {
   //income
   const income = useSelector((state) => state?.income);
   const { isIncUpdated, incLoading, incAppErr, incServerErr } = income;
-  //console.log(income);
   //initialize form
   const formik = useFormik({
     initialValues: {
@@ -64,15 +93,10 @@ const EditWallet = () => {
       amount: "",
     },
     onSubmit: (values) => {
-      // console.log(values);
-      // navigate(history, "incomes", undefined);
-      // const user = {
-      //   id: values.id,
-      //   Wallet: values.amount,
-      // };
-      // dispatch(updateUserWalletAction(user));
+      console.log(values);
+      navigate(history, "incomes", undefined);
+
       return dispatch(addNew(values));
-      // addNew(values),
     },
     validationSchema: formSchema,
   });
@@ -80,20 +104,11 @@ const EditWallet = () => {
   //redirect
   useEffect(() => {
     if (isExpUpdated) {
-      // navigate(history, "user-profile-expenses", undefined);
-      console.log(isExpUpdated);
+      navigate(history, "user-profile-expenses", undefined);
     }
     if (isIncUpdated) {
-      console.log(isExpUpdated);
+      navigate(history, "user-profile-income", undefined);
     }
-    //   navigate(history, "success-payement", undefined);
-
-    //   setTimeout(() => {
-    //     // window.location.replace("http://localhost:3000/ConfOrder");
-    //     navigate(history, "user-profile-income", undefined);
-    //   }, 3000);
-    //   // navigate(history, "user-profile-income", undefined);
-    // }
   }, [isExpUpdated, isIncUpdated]);
   return (
     <>
@@ -119,18 +134,29 @@ const EditWallet = () => {
                       {incServerErr} {incAppErr}
                     </div>
                   ) : null}
-
                   {/* <div className="mb-3 input-group "> */}
                   {/* <div> */}
+                  {profile ? (
+                    <CustomSelect
+                      options={profile}
+                      value={formik.values.id}
+                      // className={"form-select d-inline-block"}
+                      onChange={(value) =>
+                        formik.setFieldValue("id", value.value)
+                      }
+                    />
+                  ) : (
+                    <div>Loading...</div>
+                  )}
 
-                  <CustomSelect
+                  {/* <Selector
                     options={profile}
                     value={formik.values.id}
                     // className={"form-select d-inline-block"}
                     onChange={(value) =>
                       formik.setFieldValue("id", value.value)
                     }
-                  />
+                  /> */}
 
                   {/* Err */}
                   <div className="text-danger mb-2">

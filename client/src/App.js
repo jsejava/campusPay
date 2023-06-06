@@ -28,6 +28,7 @@ import UserProfileFeesList from "./Pages/Users/Profile/UserProfileFeesList";
 import FeesList from "./Pages/fees/FeesList";
 import Balance from "./Pages/Expenses/Balance";
 import Paysuccess from "./components/Alert/Paysuccess";
+import AddReqExp from "./Pages/Expenses/AddReqExp";
 
 const options = {
   timeout: 50000,
@@ -38,12 +39,12 @@ const App = () => {
   return (
     <Provider template={AlertTemplate} {...options}>
       <BrowserRouter>
-        <Balance />
+        {/* <Balance /> */}
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
           {/* <Route exact path="/" component={AdminNavbar} /> */}
-          <PrivateProtectRoute exact path="/dashboard" component={Dashboard} />
+          <AdminRoute exact path="/dashboard" component={Dashboard} />
           <PrivateProtectRoute
             exact
             path="/user-profile-expenses"
@@ -67,11 +68,7 @@ const App = () => {
             component={UpdateProfile}
           />
           <PrivateProtectRoute exact path="/edit" component={EditContent} />
-          <PrivateProtectRoute
-            exact
-            path="/edit-wallet"
-            component={EditWallet}
-          />
+          <AdminRoute exact path="/edit-wallet" component={EditWallet} />
           {/* <PrivateProtectRoute
             exact
             path="/user-expenses"
@@ -82,18 +79,15 @@ const App = () => {
             path="/add-expense"
             component={AddExpense}
           />
+          <PrivateProtectRoute exact path="/add-reqexp" component={AddReqExp} />
           <PrivateProtectRoute exact path="/add-fees" component={AddFees} />
           <PrivateProtectRoute exact path="/add-income" component={AddIncome} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateProtectRoute exact path="/profile" component={Profile} />
-          <PrivateProtectRoute exact path="/incomes" component={IncomeList} />
-          <PrivateProtectRoute
-            exact
-            path="/expenses"
-            component={ExpensesList}
-          />
-          <PrivateProtectRoute exact path="/fees" component={FeesList} />
+          <AdminRoute exact path="/incomes" component={IncomeList} />
+          <AdminRoute exact path="/expenses" component={ExpensesList} />
+          <AdminRoute exact path="/fees" component={FeesList} />
           <PrivateProtectRoute
             exact
             path="/success-payement"

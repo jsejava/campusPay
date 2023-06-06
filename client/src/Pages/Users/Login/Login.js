@@ -49,13 +49,13 @@ const Login = () => {
   //Redirect
   useEffect(() => {
     if (isLogin) {
-      // navigate(history, "profile", undefined);
+      navigate(history, "profile", undefined);
       adminAuth
         ? navigate(history, "dashboard", undefined)
         : navigate(history, "profile", undefined);
     }
     //dashboard
-  }, [isLogin]);
+  }, [isLogin, adminAuth]);
 
   return (
     <section

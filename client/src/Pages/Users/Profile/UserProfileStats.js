@@ -45,7 +45,7 @@ const UserProfileStats = ({
                 ></span>
                 {/* Expenses Start */}
                 <span class="badge fs-2 bg-primary-light text-primary">
-                  Campus Store
+                  Store & Services
                 </span>
               </div>
               <h1 class="mb-0 p-2">{formattedAmt}</h1>

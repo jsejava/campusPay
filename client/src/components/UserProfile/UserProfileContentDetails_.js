@@ -3,13 +3,13 @@ import { useHistory } from "react-router-dom";
 import useDateFormatter from "../../hooks/useDateFormatter";
 import navigate from "../../utils/navigate";
 
-const UserProfileContentDetails = ({ item }) => {
+const UserProfileContentDetails_ = ({ item }) => {
   const history = useHistory();
   console.log(item);
   return (
     <tr className="align-middle text-dark">
       <td className="p-6">{item?.title}</td>
-      <td className="p-6">{item?.description}</td>
+      {/* <td className="p-6">{item?.description}</td> */}
       <td className="p-6">{item?.amount}</td>
       <td className="p-6">{useDateFormatter(item?.createdAt)}</td>
       <td className="p-6">
@@ -37,4 +37,4 @@ const UserProfileContentDetails = ({ item }) => {
   );
 };
 
-export default UserProfileContentDetails;
+export default UserProfileContentDetails_;

@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
   //check if user is loggin
-  const user = useSelector(state => state?.users);
+  const user = useSelector((state) => state?.users);
   const { userAuth } = user;
   return (
     <Route

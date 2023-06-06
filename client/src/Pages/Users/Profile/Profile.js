@@ -90,8 +90,10 @@ const Profile = () => {
               <div className="d-flex mb-6 align-items-center">
                 <img
                   className="img-fluid me-4 rounded-2"
+                  width={200}
                   //   style="width: 64px; height: 64px;"
-                  src="https://images.unsplash.com/photo-1593789382576-54f489574d26?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;cs=tinysrgb&amp;fit=crop&amp;h=128&amp;w=128"
+                  //src="https://images.unsplash.com/photo-1593789382576-54f489574d26?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;cs=tinysrgb&amp;fit=crop&amp;h=128&amp;w=128"
+                  src="https://media.istockphoto.com/id/117285644/photo/speech.jpg?s=612x612&w=0&k=20&c=C4dEhyFgiRR98FhjDi8Lc6t8HAJwCCpVNbUWWap3IvE="
                   alt=""
                 />
                 <div>

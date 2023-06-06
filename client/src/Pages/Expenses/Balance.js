@@ -76,7 +76,7 @@ const Balance = () => {
     }
   }, [balance, userid]);
 
-  //console.log(updateUserWalletAction);
+  console.log(updateUserWalletAction);
 
   return <></>;
 };

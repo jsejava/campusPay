@@ -20,8 +20,9 @@ const PrivateNavbar = () => {
                 borderRadius: "50px",
               }}
               alt="logo"
-              src="/logo/camPay1.png"
-              width="30"
+              //src="/logo/camPay1.png"
+              src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
+              width="50"
             />
           </Link>
           <button
@@ -67,9 +68,9 @@ const PrivateNavbar = () => {
               <li class="nav-item mb-2">
                 <a
                   className="btn  btn-outline-warning me-2"
-                  href="http://localhost:3000/shop"
+                  href="http://localhost:3000"
                 >
-                  Campus Store
+                  Campus
                 </a>
               </li>
               {/* <li class="nav-item">
@@ -80,7 +81,10 @@ const PrivateNavbar = () => {
             </ul>
             <form class="d-flex">
               <Link to="/add-expense" className="btn btn-danger me-2">
-                Make Payments
+                Order Payments
+              </Link>
+              <Link to="/add-reqexp" className="btn btn-success me-2">
+                Service Payments
               </Link>
               <Link to="/add-fees" className="btn btn-info me-2">
                 School Fees

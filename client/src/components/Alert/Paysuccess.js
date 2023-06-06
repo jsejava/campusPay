@@ -236,9 +236,10 @@ const Paysuccess = () => {
             />
           </a>
           <div className="row mb-4">
-            <div className="col-12 col-md-8 col-lg-5 mx-auto">
+            <div className="w-50 mx-auto">
               <div className="p-4 shadow-sm rounded bg-white">
-                <h2>Payments successfull</h2>
+                <h2>Your Transaction Is Being Processed...</h2>
+                <h5>Please Wait For Confirmation...</h5>
                 {/* <form onSubmit={formik.handleSubmit}>
                   <span className="text-muted">Campus Pay</span>
                   <h2 className="mb-4 fw-light">Pay School Fees</h2>

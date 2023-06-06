@@ -10,7 +10,16 @@ const AdminNavbar = () => {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand">
-            <i className="bi bi-currency-exchange fs-1 text-warning "></i>
+            {/* <i className="bi bi-currency-exchange fs-1 text-warning "></i>  */}
+            <img
+              style={{
+                borderRadius: "50px",
+              }}
+              alt="logo"
+              // src="/logo/camPay1.png"
+              src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
+              width="50"
+            />
           </Link>
           <button
             className="navbar-toggler"

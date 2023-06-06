@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ContentDetails from "../../../components/ContentDetails/ContentDetails";
 
 import LoadingComponent from "../../../components/LoadingComponent";
-import UserProfileContentDetails from "../../../components/UserProfile/UserProfileContentDetails";
+import UserProfileContentDetails_ from "../../../components/UserProfile/UserProfileContentDetails_";
 import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 
 const UserProfileFeesList = () => {
@@ -74,7 +74,7 @@ const UserProfileFeesList = () => {
                     <h2>No Transaction Found</h2>
                   ) : (
                     profile?.fees?.map((exp) => (
-                      <UserProfileContentDetails item={exp} key={exp?._id} />
+                      <UserProfileContentDetails_ item={exp} key={exp?._id} />
                     ))
                   )}
                 </>

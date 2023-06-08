@@ -11,9 +11,10 @@ const PublicNavbar = () => {
                 borderRadius: "50px",
               }}
               alt="logo"
-              //src="/logo/camPay1.png"
-              src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
-              width="50"
+              src="./logo/pay-5.png"
+              width={50}
+              // src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
+              // width="50"
             />
           </Link>
           <button

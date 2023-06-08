@@ -65,7 +65,7 @@ const UserDataGrap = ({ income, expenses, fees }) => {
           display: "flex",
           height: "60px%",
           width: "20%",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
           marginLeft: "200px",

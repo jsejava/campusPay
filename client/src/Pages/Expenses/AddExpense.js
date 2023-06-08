@@ -186,57 +186,38 @@ const AddExpense = () => {
     <>
       {adminAuth ? (
         <>
-          <>
-            {/* <Header /> */}
-            <div className="container">
-              {/* <div className="row order-detail"> */}
-              <div
-                style={{
-                  // display: "flex",
-                  // height: "10px",
-                  // width: "100%",
-                  // justifyContent: "center",
-                  // alignItems: "center",
-                  // flexDirection: "column",
-                  marginTop: "50px",
-                }}
-                className="row order-detail"
-              >
-                {/* <div className="col-lg-8 col-sm-8 mb-lg-8 mb-5 mb-sm-0"> */}
-                {/* <div className="row "> */}
-                {/* <div className="col-md-8 center"></div> */}
-                <h1
-                  style={{
-                    display: "flex",
-                    // height: "10px",
-                    // width: "100%",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "column",
-                    // marginTop: "40px",
-                  }}
-                >
-                  <i>
-                    Admin Account Not Authorised, Pls Lougout and Use a User
-                    Account
-                  </i>
-                </h1>
-                {/* <div className="col-md-8 center"></div> */}
-                {/* </div> */}
-              </div>
-            </div>
-
+          {/* <Header /> */}
+          <div className="container">
+            {/* <div className="row order-detail"> */}
+            {/* <div
+              style={{
+                // display: "flex",
+                // height: "10px",
+                // width: "100%",
+                // justifyContent: "center",
+                // alignItems: "center",
+                // flexDirection: "column",
+                marginTop: "50px",
+              }}
+              className="row order-detail"
+            > */}
+            {/* <div className="col-lg-8 col-sm-8 mb-lg-8 mb-5 mb-sm-0"> */}
+            {/* <div className="row "> */}
+            {/* <div className="col-md-8 center"></div> */}
             <div
               style={{
                 display: "flex",
-                height: "10px",
-                width: "100%",
+                // height: "10px",
+                // width: "100%",
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                marginTop: "40px",
+                // marginTop: "40px",
+                marginTop: "50px",
               }}
             >
+              <h2 className="text-danger">Admin Account Not Authorised,</h2>
+              <p>Pls Lougout and Use a User Account</p>
               <button
                 onClick={() => dispatch(logoutAction())}
                 type="button"
@@ -244,24 +225,37 @@ const AddExpense = () => {
               >
                 Lougout
               </button>
+              <img
+                alt="NotAdmin"
+                className=" img-fluid m-3"
+                width={300}
+                src="https://media.istockphoto.com/id/473976598/photo/small-person-standing-on-word-no.jpg?s=612x612&w=0&k=20&c=AY3FjTdXaRHBovy5vuGirMypxNDQpX42G2E1fd6F1dY="
+              />
             </div>
+            {/* <div className="col-md-8 center"></div> */}
             {/* </div> */}
-          </>
-          {/* <h1>Admin not Authorised</h1> */}
+          </div>
+          {/* </div> */}
         </>
       ) : (
         <section className="py-5 bg-danger vh-100">
           <div className="container text-center">
-            <a className="d-inline-block mb-5">
+            <div className="d-inline-block mb-5">
               {/* <img
               className="img-fluid"
               src={moneySVG}
               alt="SVGeXPENSES"
               width="200"
             /> */}
-            </a>
+              <img
+                className="img-fluid"
+                src="./logo/pay-1.png"
+                alt="SVGeXPENSES"
+                width="100"
+              />
+            </div>
             <div className="row mb-4">
-              {/* <div className="col-12 col-md-8 col-lg-5 mx-auto">
+              {/* <div className="col-12 col-md-8 col-lg-5 mx-auto"> 
               <UserProfileStats
                 numOfTransExp={profile?.expenses?.length}
                 avgExp={expResult?.avg}
@@ -279,7 +273,7 @@ const AddExpense = () => {
                 <div className="p-4 shadow-sm rounded bg-white">
                   <form onSubmit={formik.handleSubmit}>
                     <span className="text-muted">CampusPay</span>
-                    <h2 className="fw-light">Make Payments</h2>
+                    <h2 className="fw-light">Payments</h2>
                     <i className="mb-4">
                       Refresh The Page To See On Going Orders
                     </i>
@@ -292,13 +286,35 @@ const AddExpense = () => {
                     <div className="mb-3 mt-4 input-group">
                       {item ? (
                         <>
-                          <i className="btn btn-success  w-100 disabled">
+                          <table
+                            className="table table-bordered"
+                            style={{
+                              backgroundColor: "#f3f3f3",
+                            }}
+                          >
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <strong>Products</strong>
+                                </td>
+                                <td> {item} </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <strong>Price</strong>
+                                </td>
+                                <td>Gh₵ {total}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          {/* <i className="btn btn-success  w-100 disabled">
                             {item}
                           </i>
                           <i className="btn btn-primary w-100 disabled">At</i>{" "}
                           <i className="btn btn-success mb-4 w-100 disabled">
                             {total}
-                          </i>
+                          </i> */}
                           {/* Err */}
                           <div className="text-danger mb-2">
                             {formik.touched.title && formik.errors.title}
@@ -309,7 +325,7 @@ const AddExpense = () => {
                               onBlur={formik.handleBlur("description")}
                               onChange={formik.handleChange("description")}
                               className="form-control"
-                              type="text"
+                              type="password"
                               placeholder="Enter Pin"
                             />
                           </div>

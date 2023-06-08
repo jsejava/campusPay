@@ -39,7 +39,7 @@ const App = () => {
   return (
     <Provider template={AlertTemplate} {...options}>
       <BrowserRouter>
-        {/* <Balance /> */}
+        <Balance />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -67,7 +67,7 @@ const App = () => {
             path="/update-profile"
             component={UpdateProfile}
           />
-          <PrivateProtectRoute exact path="/edit" component={EditContent} />
+          {/* <PrivateProtectRoute exact path="/edit" component={EditContent} /> */}
           <AdminRoute exact path="/edit-wallet" component={EditWallet} />
           {/* <PrivateProtectRoute
             exact

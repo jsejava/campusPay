@@ -133,7 +133,7 @@ const Register = ({ history }) => {
                   onBlur={formik.handleBlur("pin")}
                   onChange={formik.handleChange("pin")}
                   className="form-control mb-2"
-                  type="pin"
+                  type="password"
                   placeholder="pin"
                 />
                 {/* Err */}

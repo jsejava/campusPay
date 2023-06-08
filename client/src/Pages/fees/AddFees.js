@@ -15,6 +15,7 @@ import { userProfileAction } from "../../redux/slices/users/usersSlices";
 import calTransaction from "../../utils/accStatistics";
 //import UserProfileStats from "./UserProfileStats";
 import UserProfileStats from "../Users/Profile/UserProfileStats";
+import { logoutAction } from "../../redux/slices/users/usersSlices";
 
 //Form validation
 const formSchema = Yup.object({
@@ -111,7 +112,7 @@ const AddFees = () => {
   // const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
-
+  const adminAuth = profile?.isAdmin;
   //income
   useEffect(() => {
     if (profile?.expenses) {
@@ -165,83 +166,147 @@ const AddFees = () => {
 
   return (
     <>
-      <section className="py-5 bg-danger vh-100">
-        <div className="container text-center">
-          <a className="d-inline-block mb-5">
-            <img
-              className="img-fluid"
-              src={moneySVG}
-              alt="SVGeXPENSES"
-              width="200"
-            />
-          </a>
-          <div className="row mb-4">
-            <div className="col-12 col-md-8 col-lg-5 mx-auto">
-              <div className="p-4 shadow-sm rounded bg-white">
-                <form onSubmit={formik.handleSubmit}>
-                  <span className="text-muted">Campus Pay</span>
-                  <h2 className="mb-4 fw-light">Pay School Fees</h2>
-                  {/* Display income Err */}
-                  {expServerErr || expAppErr ? (
-                    <div className="alert alert-danger" role="alert">
-                      {expServerErr} {expAppErr}
+      {adminAuth ? (
+        <>
+          {/* <Header /> */}
+          <div className="container">
+            {/* <div className="row order-detail"> */}
+            {/* <div
+              style={{
+                // display: "flex",
+                // height: "10px",
+                // width: "100%",
+                // justifyContent: "center",
+                // alignItems: "center",
+                // flexDirection: "column",
+                marginTop: "50px",
+              }}
+              className="row order-detail"
+            > */}
+            {/* <div className="col-lg-8 col-sm-8 mb-lg-8 mb-5 mb-sm-0"> */}
+            {/* <div className="row "> */}
+            {/* <div className="col-md-8 center"></div> */}
+            <div
+              style={{
+                display: "flex",
+                // height: "10px",
+                // width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                // marginTop: "40px",
+                marginTop: "50px",
+              }}
+            >
+              <h2 className="text-danger">Admin Account Not Authorised,</h2>
+              <p>Pls Lougout and Use a User Account</p>
+              <button
+                onClick={() => dispatch(logoutAction())}
+                type="button"
+                class="btn btn-primary btn-lg"
+              >
+                Lougout
+              </button>
+              <img
+                alt="NotAdmin"
+                className=" img-fluid m-3"
+                width={300}
+                src="https://media.istockphoto.com/id/473976598/photo/small-person-standing-on-word-no.jpg?s=612x612&w=0&k=20&c=AY3FjTdXaRHBovy5vuGirMypxNDQpX42G2E1fd6F1dY="
+              />
+            </div>
+            {/* <div className="col-md-8 center"></div> */}
+            {/* </div> */}
+          </div>
+          {/* </div> */}
+        </>
+      ) : (
+        <section className="py-5 bg-danger vh-100">
+          <div className="container text-center">
+            <div className="d-inline-block mb-5">
+              {/* <img
+                className="img-fluid"
+                src={moneySVG}
+                alt="SVGeXPENSES"
+                width="200"
+              /> */}
+              <img
+                className="img-fluid"
+                src="./logo/pay-9.png"
+                alt="SVGeXPENSES"
+                width="150"
+              />
+            </div>
+            <div className="row mb-4">
+              <div className="col-12 col-md-8 col-lg-5 mx-auto">
+                <div className="p-4 shadow-sm rounded bg-white">
+                  <form onSubmit={formik.handleSubmit}>
+                    <span className="text-muted">Campus Pay</span>
+                    <h2 className="mb-4 fw-light">School Fees</h2>
+                    {/* Display income Err */}
+                    {expServerErr || expAppErr ? (
+                      <div className="alert alert-danger" role="alert">
+                        {expServerErr} {expAppErr}
+                      </div>
+                    ) : null}
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.title}
+                        onBlur={formik.handleBlur("title")}
+                        onChange={formik.handleChange("title")}
+                        className="form-control"
+                        type="text"
+                        placeholder="Enter ID Number"
+                      />
                     </div>
-                  ) : null}
-                  <div className="mb-3 input-group">
-                    <input
-                      value={formik.values.title}
-                      onBlur={formik.handleBlur("title")}
-                      onChange={formik.handleChange("title")}
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter ID Number"
-                    />
-                  </div>
-                  {/* Err */}
-                  <div className="text-danger mb-2">
-                    {formik.touched.title && formik.errors.title}
-                  </div>
-                  <div className="mb-3 input-group">
-                    <input
-                      value={formik.values.description}
-                      onBlur={formik.handleBlur("description")}
-                      onChange={formik.handleChange("description")}
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter PIN"
-                    />
-                  </div>
-                  {/* Err */}
-                  <div className="text-danger mb-2">
-                    {formik.touched.description && formik.errors.description}
-                  </div>
-                  <div className="mb-3 input-group">
-                    <input
-                      value={formik.values.amount}
-                      onBlur={formik.handleBlur("amount")}
-                      onChange={formik.handleChange("amount")}
-                      className="form-control"
-                      type="number"
-                      placeholder="Enter Amount"
-                    />
-                  </div>
-                  {/* Err */}
-                  <div className="text-danger mb-2">
-                    {formik.touched.amount && formik.errors.amount}
-                  </div>
-                  {expLoading ? (
-                    <DisabledButton />
-                  ) : (
-                    <button type="submit" className="btn btn-danger mb-4 w-100">
-                      Send
-                    </button>
-                  )}
-                </form>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.title && formik.errors.title}
+                    </div>
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.description}
+                        onBlur={formik.handleBlur("description")}
+                        onChange={formik.handleChange("description")}
+                        className="form-control"
+                        type="password"
+                        placeholder="Enter PIN"
+                      />
+                    </div>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.description && formik.errors.description}
+                    </div>
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.amount}
+                        onBlur={formik.handleBlur("amount")}
+                        onChange={formik.handleChange("amount")}
+                        className="form-control"
+                        type="number"
+                        placeholder="Enter Amount"
+                      />
+                    </div>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.amount && formik.errors.amount}
+                    </div>
+                    {expLoading ? (
+                      <DisabledButton />
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn btn-danger mb-4 w-100"
+                      >
+                        Send
+                      </button>
+                    )}
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

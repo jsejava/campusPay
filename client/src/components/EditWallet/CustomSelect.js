@@ -7,7 +7,7 @@ export default ({ onChange, options, value, className }) => {
     label: item.firstname + " " + item.lastname,
   }));
   // //console.log(options);
-  // //console.log(items);
+  //console.log(items);
   // const defaultValue = (items, value) => {
   //   return items ? items.find((option) => option.value === value) : "";
   // };

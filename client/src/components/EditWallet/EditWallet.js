@@ -35,7 +35,7 @@ const EditWallet = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users);
   const { profile, userLoading, userAppErr, userServerErr } = user;
-  //console.log(profile);
+  console.log(profile);
   // const item = Object.values(profile);
   // console.log(item);
   useEffect(() => {
@@ -114,14 +114,20 @@ const EditWallet = () => {
     <>
       <section className="py-5 bg-success vh-100">
         <div className="container text-center">
-          <a className="d-inline-block mb-5">
+          <div className="d-inline-block mb-5">
             {/* <img
               className="img-fluid"
               src={moneySVG}
               alt="SVGeXPENSES"
               width="200"
             /> */}
-          </a>
+            <img
+              className="img-fluid"
+              src="./logo/pay-1.png"
+              alt="SVGeXPENSES"
+              width="100"
+            />
+          </div>
           <div className="row mb-4">
             <div className="col-12 col-md-8 col-lg-5 mx-auto">
               <div className="p-4 shadow-sm rounded bg-white">

@@ -16,9 +16,10 @@ const AdminNavbar = () => {
                 borderRadius: "50px",
               }}
               alt="logo"
-              // src="/logo/camPay1.png"
-              src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
-              width="50"
+              src="./logo/pay-5.png"
+              width={50}
+              // src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
+              // width="50"
             />
           </Link>
           <button
@@ -35,8 +36,8 @@ const AdminNavbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item mb-2">
-                <Link to="/" className="btn  text-info me-2 disabled">
-                  Hi, Administration
+                <Link to="/" className="btn  btn-outline-warning me-2">
+                  Hi. Admin
                 </Link>
               </li>
 
@@ -75,7 +76,7 @@ const AdminNavbar = () => {
             <form className="d-flex">
               <button
                 onClick={() => dispatch(logoutAction())}
-                className="btn btn-warning me-2"
+                className="btn btn-outline-warning me-2"
               >
                 Logout
               </button>

@@ -17,12 +17,14 @@ const PrivateNavbar = () => {
           <Link to="/" className="navbar-brand">
             <img
               style={{
-                borderRadius: "50px",
+                borderRadius: "100%",
               }}
               alt="logo"
               //src="/logo/camPay1.png"
-              src="https://media.istockphoto.com/id/980110018/photo/letter-p-uppercase-alphabet-plastic-on-white-background-with-clipping-path.jpg?s=612x612&w=0&k=20&c=1VNAt2GG4c9HANzz9M53A1zCm763ptsmQMeOk5WE3mY="
-              width="50"
+              //src="https://img.freepik.com/premium-vector/wallet-logo-design-vector-template_306040-2194.jpg?w=2000"
+              //src="https://w7.pngwing.com/pngs/1024/970/png-transparent-black-wallet-logo-money-wallet-computer-icons-payment-finance-wallet-icons-no-attribution-text-service-logo.png"
+              src="./logo/pay-5.png"
+              width={50}
             />
           </Link>
           <button
@@ -49,16 +51,19 @@ const PrivateNavbar = () => {
                   Deposits List
                 </Link>
               </li> */}
-              <li class="nav-item mb-2">
-                <Link to="/" className="btn  text-info me-2 disabled">
-                  Hi, {profile?.firstname}
-                </Link>
-              </li>
-              <li class="nav-item mb-2">
-                <Link to="/" className="btn  btn-outline-warning me-2">
-                  Home
-                </Link>
-              </li>
+              {profile ? (
+                <li class="nav-item mb-2">
+                  <Link to="/" className="btn  btn-outline-warning me-2">
+                    Hi. {profile?.firstname}
+                  </Link>
+                </li>
+              ) : (
+                <li class="nav-item mb-2">
+                  <Link to="/" className="btn  btn-outline-warning me-2">
+                    Home
+                  </Link>
+                </li>
+              )}
 
               <li class="nav-item mb-2">
                 <Link to="/profile" className="btn  btn-outline-warning me-2">
@@ -80,13 +85,13 @@ const PrivateNavbar = () => {
               </li> */}
             </ul>
             <form class="d-flex">
-              <Link to="/add-expense" className="btn btn-danger me-2">
+              <Link to="/add-expense" className="btn btn-outline-danger me-2">
                 Order Payments
               </Link>
-              <Link to="/add-reqexp" className="btn btn-success me-2">
+              <Link to="/add-reqexp" className="btn btn-outline-success me-2">
                 Service Payments
               </Link>
-              <Link to="/add-fees" className="btn btn-info me-2">
+              <Link to="/add-fees" className="btn btn-outline-info me-2">
                 School Fees
               </Link>
               {/* <Link to="/add-income" className="btn btn-success me-2">
@@ -94,7 +99,7 @@ const PrivateNavbar = () => {
               </Link> */}
               <button
                 onClick={() => dispatch(logoutAction())}
-                className="btn btn-warning me-2"
+                className="btn btn-outline-warning me-2"
               >
                 Logout
               </button>

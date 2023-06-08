@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 import calTransaction from "../../../utils/accStatistics";
 import DashboardData from "../../../components/Dashboard/DashboardData";
@@ -11,6 +11,7 @@ import useDateFormatter from "../../../hooks/useDateFormatter";
 import LoadingComponent from "../../../components/Loading/Loading";
 import ErrorDisplayMessage from "../../../components/ErrorDisplayMessage";
 import UserDataGrap from "./UserDataGrap";
+import moment from "moment";
 
 const Profile = () => {
   const [expResult, setExpResult] = useState([]);
@@ -24,7 +25,7 @@ const Profile = () => {
   const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
-  // console.log(profile);
+  console.log(profile);
 
   //income
   useEffect(() => {
@@ -88,34 +89,62 @@ const Profile = () => {
           <div className="container">
             <div className="position-relative p-8 border rounded-2">
               <div className="d-flex mb-6 align-items-center">
-                <img
-                  className="img-fluid me-4 rounded-2"
-                  width={200}
-                  //   style="width: 64px; height: 64px;"
-                  //src="https://images.unsplash.com/photo-1593789382576-54f489574d26?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;cs=tinysrgb&amp;fit=crop&amp;h=128&amp;w=128"
-                  src="https://media.istockphoto.com/id/117285644/photo/speech.jpg?s=612x612&w=0&k=20&c=C4dEhyFgiRR98FhjDi8Lc6t8HAJwCCpVNbUWWap3IvE="
-                  alt=""
-                />
                 <div>
-                  <h6 className="fw-bold mb-0">
-                    <span>
-                      {profile?.firstname} {profile?.lastname}
-                    </span>
-                    <span className="badge ms-2 bg-primary-light text-primary">
-                      {profile?.expenses?.length + profile?.income?.length}{" "}
-                      Records Created
-                    </span>
-                  </h6>
-                  <p className="mb-0">{profile?.email}</p>
-                  <p className="mb-0">Date Joined: 12-Jan-1999</p>
-                  <button
-                    onClick={() => navigate(history, "update-profile", profile)}
-                    className="btn"
+                  <div
+                    style={{
+                      marginLeft: 220,
+                    }}
                   >
-                    Edit Profile
-                    <i class="bi bi-pen fs-3 m-3 text-primary"></i>
+                    <span
+                      className="badge"
+                      style={{
+                        backgroundColor: "red",
+                        position: "absolute",
+                        top: 10,
+                        borderRadius: 100,
+                        marginLeft: 20,
+
+                        fontSize: 12,
+                      }}
+                    >
+                      {profile?.expenses?.length + profile?.fees?.length}
+                    </span>
+                    <i class="bi bi-wallet-fill"></i>
+                  </div>
+                  {/* <h6 className="fw-bold mb-0"> */}
+                  <button type="button" className="fw-bold mb-5 ms-5">
+                    <img
+                      className="img-fluid me-1 rounded-2"
+                      width={50}
+                      //   style="width: 64px; height: 64px;"
+                      //src="https://images.unsplash.com/photo-1593789382576-54f489574d26?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=faces&amp;cs=tinysrgb&amp;fit=crop&amp;h=128&amp;w=128"
+                      //src="https://media.istockphoto.com/id/117285644/photo/speech.jpg?s=612x612&w=0&k=20&c=C4dEhyFgiRR98FhjDi8Lc6t8HAJwCCpVNbUWWap3IvE="
+                      src="./logo/user-2.png"
+                      alt=""
+                    />
+                    {profile?.firstname.slice(0, 7)}{" "}
+                    {profile?.lastname.slice(0, 7)}
+                    {/* jocelyne akugaowuwtvsbdhshsjabnakjnasjbcsahjbajkc */}
+                    {/* <span className="badge ms-2 bg-primary-light text-primary">
+                      {profile?.expenses?.length + profile?.fees?.length}{" "}
+                      Transactions
+                    </span> */}
+                    {/* </h6> */}
+                    <p className="mb-0">{profile?.email}</p>
+                    <p className="mb-0">
+                      Joined {moment(profile?.createdAt).format("LL")}
+                    </p>
+                    <button
+                      onClick={() =>
+                        navigate(history, "update-profile", profile)
+                      }
+                      className="btn"
+                    >
+                      <i class="bi bi-pen fs-3 text-primary"></i>
+                    </button>
                   </button>
                 </div>
+
                 {/* <div
                 style={{
                   display: "flex",
@@ -139,7 +168,6 @@ const Profile = () => {
                 />
                 {/* </div> */}
               </div>
-              <p className="mb-8"> </p>
 
               <UserProfileStats
                 numOfTransExp={profile?.expenses?.length}

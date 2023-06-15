@@ -12,6 +12,7 @@ import LoadingComponent from "../../../components/Loading/Loading";
 import ErrorDisplayMessage from "../../../components/ErrorDisplayMessage";
 import UserDataGrap from "./UserDataGrap";
 import moment from "moment";
+import { listMyOrdersAction } from "../../../redux/slices/orders/ordersAction";
 
 const Profile = () => {
   const [expResult, setExpResult] = useState([]);
@@ -20,12 +21,21 @@ const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(userProfileAction());
+    dispatch(listMyOrdersAction());
   }, []);
   //history
   const history = useHistory();
   const users = useSelector((state) => state?.users);
   const { profile, userLoading, userAppErr, userServerErr, userAuth } = users;
-  console.log(profile);
+  const order = useSelector((state) => state?.order);
+  const {
+    orderList,
+    orderLoading,
+    orderAppErr,
+    orderServerErr,
+    isOrderCreated,
+  } = order;
+  console.log(orderList);
 
   //income
   useEffect(() => {
@@ -122,8 +132,8 @@ const Profile = () => {
                       src="./logo/user-2.png"
                       alt=""
                     />
-                    {profile?.firstname.slice(0, 7)}{" "}
-                    {profile?.lastname.slice(0, 7)}
+                    {profile?.firstname?.slice(0, 7)}{" "}
+                    {profile?.lastname?.slice(0, 7)}
                     {/* jocelyne akugaowuwtvsbdhshsjabnakjnasjbcsahjbajkc */}
                     {/* <span className="badge ms-2 bg-primary-light text-primary">
                       {profile?.expenses?.length + profile?.fees?.length}{" "}

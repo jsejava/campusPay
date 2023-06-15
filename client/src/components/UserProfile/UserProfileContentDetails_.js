@@ -5,7 +5,7 @@ import navigate from "../../utils/navigate";
 
 const UserProfileContentDetails_ = ({ item }) => {
   const history = useHistory();
-  console.log(item);
+  // console.log(item);
   return (
     <tr className="align-middle text-dark">
       <td className="p-6">{item?.title}</td>

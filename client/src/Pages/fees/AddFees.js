@@ -258,20 +258,7 @@ const AddFees = () => {
                         placeholder="Enter ID Number"
                       />
                     </div>
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.title && formik.errors.title}
-                    </div>
-                    <div className="mb-3 input-group">
-                      <input
-                        value={formik.values.description}
-                        onBlur={formik.handleBlur("description")}
-                        onChange={formik.handleChange("description")}
-                        className="form-control"
-                        type="password"
-                        placeholder="Enter PIN"
-                      />
-                    </div>
+
                     {/* Err */}
                     <div className="text-danger mb-2">
                       {formik.touched.description && formik.errors.description}
@@ -284,6 +271,20 @@ const AddFees = () => {
                         className="form-control"
                         type="number"
                         placeholder="Enter Amount"
+                      />
+                    </div>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.title && formik.errors.title}
+                    </div>
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.description}
+                        onBlur={formik.handleBlur("description")}
+                        onChange={formik.handleChange("description")}
+                        className="form-control"
+                        type="password"
+                        placeholder="Enter PIN"
                       />
                     </div>
                     {/* Err */}

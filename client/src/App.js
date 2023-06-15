@@ -29,6 +29,8 @@ import FeesList from "./Pages/fees/FeesList";
 import Balance from "./Pages/Expenses/Balance";
 import Paysuccess from "./components/Alert/Paysuccess";
 import AddReqExp from "./Pages/Expenses/AddReqExp";
+import Orders from "./Pages/Ordres/Orders";
+import AddExp from "./Pages/Expenses/AddExp";
 
 const options = {
   timeout: 50000,
@@ -79,6 +81,11 @@ const App = () => {
             path="/add-expense"
             component={AddExpense}
           />
+          <PrivateProtectRoute
+            exact
+            path="/add-expense/:id"
+            component={AddExp}
+          />
           <PrivateProtectRoute exact path="/add-reqexp" component={AddReqExp} />
           <PrivateProtectRoute exact path="/add-fees" component={AddFees} />
           <PrivateProtectRoute exact path="/add-income" component={AddIncome} />
@@ -93,6 +100,7 @@ const App = () => {
             path="/success-payement"
             component={Paysuccess}
           />
+          <PrivateProtectRoute exact path="/order-list" component={Orders} />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -9,6 +9,7 @@ const feesRoute = require("./route/fees/fees");
 const expenseRoute = require("./route/expense/expense");
 const walletRoute = require("./route/wallet/wallet");
 const accountStatsRoute = require("./route/stats/stats");
+const orderRoute = require("./route/order/order");
 // dotenv;
 dotenv.config();
 // dotenv.config({ path: "../../config.env" });
@@ -41,6 +42,8 @@ app.use("/api/wallet", walletRoute);
 app.use("/api/fees", feesRoute);
 //stats
 app.use("/api/stats", accountStatsRoute);
+//Order
+app.use("/api/orders", orderRoute);
 //err handler
 app.use(notFound);
 app.use(errorHandler);

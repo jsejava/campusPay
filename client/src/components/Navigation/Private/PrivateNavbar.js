@@ -89,7 +89,7 @@ const PrivateNavbar = () => {
                 Order Payments
               </Link>
               <Link to="/add-reqexp" className="btn btn-outline-success me-2">
-                Service Payments
+                Request Payments
               </Link>
               <Link to="/add-fees" className="btn btn-outline-info me-2">
                 School Fees

@@ -5,11 +5,11 @@ import navigate from "../../utils/navigate";
 
 const UserProfileContentDetails = ({ item }) => {
   const history = useHistory();
-  console.log(item);
+  // console.log(item);
   return (
     <tr className="align-middle text-dark">
       <td className="p-6">{item?.title}</td>
-      <td className="p-6">{item?.description}</td>
+      {/* <td className="p-6">{item?.description}</td> */}
       <td className="p-6">{item?.amount}</td>
       <td className="p-6">{useDateFormatter(item?.createdAt)}</td>
       <td className="p-6">

@@ -16,7 +16,7 @@ const DashboardData = ({
   minInc,
   maxInc,
   numOfTransInc,
-  netProfit,
+  //netProfit,
   numOfTransFees,
   avgFees,
   totalFees,
@@ -25,11 +25,17 @@ const DashboardData = ({
 }) => {
   const dispatch = useDispatch();
   //format curr
+
+  totalExp = totalExp ? totalExp : 0;
+  totalInc = totalInc ? totalInc : 0;
+  totalFees = totalFees ? totalFees : 0;
+
+  const total = totalExp + totalInc + totalFees;
   const formattedTotalExp = useCurrencyFormatter("GHS", totalExp);
   const formattedTotalInc = useCurrencyFormatter("GHS", totalInc);
   const formattedAmtfees = useCurrencyFormatter("GHS", totalFees);
-  const formattedNetProfit = useCurrencyFormatter("GHS", netProfit);
-  //format date
+  const formattedNetProfit = useCurrencyFormatter("GHS", total);
+
   return (
     <section class="py-6">
       <div class="container">
@@ -51,7 +57,7 @@ const DashboardData = ({
         </div>
         {/* Net Profit */}
         <div style={{ textAlign: "center", margin: "20px" }}>
-          <h2 className="text-success">Net Profit : {formattedNetProfit}</h2>
+          <h2 className="text-success">Total : {formattedNetProfit}</h2>
         </div>
         {/* stats */}
 

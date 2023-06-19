@@ -4,6 +4,7 @@ import expenses from "../slices/expenses/expenseSlices";
 import income from "../slices/income/incomeSlices";
 import statistics from "../slices/accountStats/accountStatsSlices";
 import order from "../slices/orders/ordersSlices";
+import request from "../slices/requests/requestsSlices";
 const store = configureStore({
   reducer: {
     users: usersReducer,
@@ -11,6 +12,7 @@ const store = configureStore({
     income,
     statistics,
     order,
+    request,
   },
 });
 

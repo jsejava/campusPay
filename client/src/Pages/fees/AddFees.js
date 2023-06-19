@@ -16,6 +16,7 @@ import calTransaction from "../../utils/accStatistics";
 //import UserProfileStats from "./UserProfileStats";
 import UserProfileStats from "../Users/Profile/UserProfileStats";
 import { logoutAction } from "../../redux/slices/users/usersSlices";
+import Select from "react-select";
 
 //Form validation
 const formSchema = Yup.object({
@@ -163,6 +164,12 @@ const AddFees = () => {
   // const maxExpenses = Math.max(...expensesArr);
 
   // console.log(maxExpenses, totalExp);
+  const [school, setSchool] = useState("");
+  const campus = [
+    { value: "CUG", label: "CUG" },
+    { value: "UNER", label: "UNER" },
+    { value: "LAGON", label: "LAGON" },
+  ];
 
   return (
     <>
@@ -248,59 +255,86 @@ const AddFees = () => {
                         {expServerErr} {expAppErr}
                       </div>
                     ) : null}
-                    <div className="mb-3 input-group">
-                      <input
-                        value={formik.values.title}
-                        onBlur={formik.handleBlur("title")}
-                        onChange={formik.handleChange("title")}
-                        className="form-control"
-                        type="text"
-                        placeholder="Enter ID Number"
-                      />
-                    </div>
 
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.description && formik.errors.description}
-                    </div>
-                    <div className="mb-3 input-group">
-                      <input
-                        value={formik.values.amount}
-                        onBlur={formik.handleBlur("amount")}
-                        onChange={formik.handleChange("amount")}
-                        className="form-control"
-                        type="number"
-                        placeholder="Enter Amount"
-                      />
-                    </div>
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.title && formik.errors.title}
-                    </div>
-                    <div className="mb-3 input-group">
-                      <input
-                        value={formik.values.description}
-                        onBlur={formik.handleBlur("description")}
-                        onChange={formik.handleChange("description")}
-                        className="form-control"
-                        type="password"
-                        placeholder="Enter PIN"
-                      />
-                    </div>
-                    {/* Err */}
-                    <div className="text-danger mb-2">
-                      {formik.touched.amount && formik.errors.amount}
-                    </div>
-                    {expLoading ? (
-                      <DisabledButton />
-                    ) : (
-                      <button
-                        type="submit"
-                        className="btn btn-danger mb-4 w-100"
-                      >
-                        Send
-                      </button>
-                    )}
+                    <Select
+                      //className="select"
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          // borderColor: state.isFocused ? "grey" : "#8a8a8a",
+                          width: "100%",
+                          padding: "2px 20px",
+                          marginTop: "20px",
+                          border: " 1px solid #e4e4e4",
+                          bordeRadius: "5px",
+                          color: "#8a8a8a",
+                          textAlign: "left",
+                          marginBottom: "20px",
+                        }),
+                      }}
+                      value={campus.value}
+                      onChange={(value) => setSchool(value.value)}
+                      options={campus}
+                      placeholder="Select Your School"
+                    />
+                    {school ? (
+                      <>
+                        <div className="mb-3 input-group">
+                          <input
+                            value={formik.values.title}
+                            onBlur={formik.handleBlur("title")}
+                            onChange={formik.handleChange("title")}
+                            className="form-control"
+                            type="text"
+                            placeholder="Enter ID Number"
+                          />
+                        </div>
+
+                        {/* Err */}
+                        <div className="text-danger mb-2">
+                          {formik.touched.description &&
+                            formik.errors.description}
+                        </div>
+                        <div className="mb-3 input-group">
+                          <input
+                            value={formik.values.amount}
+                            onBlur={formik.handleBlur("amount")}
+                            onChange={formik.handleChange("amount")}
+                            className="form-control"
+                            type="number"
+                            placeholder="Enter Amount"
+                          />
+                        </div>
+                        {/* Err */}
+                        <div className="text-danger mb-2">
+                          {formik.touched.title && formik.errors.title}
+                        </div>
+                        <div className="mb-3 input-group">
+                          <input
+                            value={formik.values.description}
+                            onBlur={formik.handleBlur("description")}
+                            onChange={formik.handleChange("description")}
+                            className="form-control"
+                            type="password"
+                            placeholder="Enter PIN"
+                          />
+                        </div>
+                        {/* Err */}
+                        <div className="text-danger mb-2">
+                          {formik.touched.amount && formik.errors.amount}
+                        </div>
+                        {expLoading ? (
+                          <DisabledButton />
+                        ) : (
+                          <button
+                            type="submit"
+                            className="btn btn-danger mb-4 w-100"
+                          >
+                            Send
+                          </button>
+                        )}
+                      </>
+                    ) : null}
                   </form>
                 </div>
               </div>

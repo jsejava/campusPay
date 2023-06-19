@@ -76,6 +76,17 @@ const Home = () => {
                 <p>password: 12345</p> */}
                 <div className="row align-items-center pt-5">
                   <div className="col-6 col-md-4 col-lg-3 col-xl-2 text-center mb-5">
+                    <a href="http://localhost:3000">
+                      <img
+                        className="d-inline-block img-fluid"
+                        //src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm9_fQeyx5KkAhwNezfxroN4B3QVSpcCDr9OSf1iburTIkvCKZWWGqUjjmLpnPvSahSUQ&usqp=CAU"
+                        src="./logo/house.png"
+                        alt=""
+                        width={35}
+                      />
+                    </a>
+                  </div>
+                  <div className="col-6 col-md-4 col-lg-3 col-xl-2 text-center mb-5">
                     <a href="http://localhost:3000/shop">
                       <img
                         className="d-inline-block img-fluid"
@@ -97,17 +108,7 @@ const Home = () => {
                       />
                     </a>
                   </div>
-                  <div className="col-6 col-md-4 col-lg-3 col-xl-2 text-center mb-5">
-                    <Link to="/">
-                      <img
-                        className="d-inline-block img-fluid"
-                        //src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm9_fQeyx5KkAhwNezfxroN4B3QVSpcCDr9OSf1iburTIkvCKZWWGqUjjmLpnPvSahSUQ&usqp=CAU"
-                        src="./logo/pay-5.png"
-                        alt=""
-                        width={35}
-                      />
-                    </Link>
-                  </div>
+
                   {/* <div className="col-6 col-md-4 col-lg-3 col-xl-2 text-center mb-5">
                     <img
                       className="d-inline-block img-fluid"

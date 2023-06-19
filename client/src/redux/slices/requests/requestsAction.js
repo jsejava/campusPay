@@ -8,8 +8,8 @@ export const resetExpUpdated = createAction("expense/updated/reset");
 export const resetExpDeleted = createAction("expense/deleted/reset");
 
 //Fetch All Order
-export const listMyOrdersAction = createAsyncThunk(
-  "order/list",
+export const listMyRequestsAction = createAsyncThunk(
+  "request/list",
   async (_, { rejectWithValue, getState, dispatch }) => {
     //get user token
     const user = getState()?.users;
@@ -21,7 +21,7 @@ export const listMyOrdersAction = createAsyncThunk(
     };
     //http call
     try {
-      const { data } = await axios.get(`${baseUrl}/api/orders`, config);
+      const { data } = await axios.get(`${baseUrl}/api/requests`, config);
       return data;
     } catch (error) {
       if (!error.response) {
@@ -33,8 +33,8 @@ export const listMyOrdersAction = createAsyncThunk(
 );
 
 //Fetch Single Order
-export const getOrderDetailsAction = createAsyncThunk(
-  "order/details",
+export const getRequestDetailsAction = createAsyncThunk(
+  "request/details",
   async (id, { rejectWithValue, getState, dispatch }) => {
     //get user token
     const user = getState()?.users;
@@ -46,8 +46,8 @@ export const getOrderDetailsAction = createAsyncThunk(
     };
     //http call
     try {
-      const { data } = await axios.get(`${baseUrl}/api/orders/${id}`, config);
-      // console.log(data);
+      const { data } = await axios.get(`${baseUrl}/api/requests/${id}`, config);
+      console.log(data);
       return data;
     } catch (error) {
       if (!error.response) {
@@ -58,8 +58,8 @@ export const getOrderDetailsAction = createAsyncThunk(
   }
 );
 // //Fetch Single Exp
-export const payOrderAction = createAsyncThunk(
-  "order/pay",
+export const payRequestAction = createAsyncThunk(
+  "request/pay",
   async (paymentResult, { rejectWithValue, getState, dispatch }) => {
     const { disId, ...fields } = paymentResult;
     //get user token
@@ -73,7 +73,7 @@ export const payOrderAction = createAsyncThunk(
     //http call
     try {
       const { data } = await axios.put(
-        `${baseUrl}/api/orders/${disId}/pay`,
+        `${baseUrl}/api/requests/${disId}/pay`,
         // `http://localhost:5001/api/orders/${id}/pay`,
         fields,
         config

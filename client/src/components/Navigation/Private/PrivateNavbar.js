@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-//import { useDispatch } from "react-redux";
 import { logoutAction } from "../../../redux/slices/users/usersSlices";
-import { userProfileAction } from "../../../redux/slices/users/usersSlices";
+import pay from "../../../img/pay-5.png";
+//import pay from "./logo/pay-5.png";
 
 const PrivateNavbar = () => {
   const users = useSelector((state) => state?.users);
@@ -23,7 +23,7 @@ const PrivateNavbar = () => {
               //src="/logo/camPay1.png"
               //src="https://img.freepik.com/premium-vector/wallet-logo-design-vector-template_306040-2194.jpg?w=2000"
               //src="https://w7.pngwing.com/pngs/1024/970/png-transparent-black-wallet-logo-money-wallet-computer-icons-payment-finance-wallet-icons-no-attribution-text-service-logo.png"
-              src="./logo/pay-5.png"
+              src={pay}
               width={50}
             />
           </Link>

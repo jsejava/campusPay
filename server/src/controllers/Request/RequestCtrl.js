@@ -1,5 +1,5 @@
 const expressAsyncHandler = require("express-async-handler");
-const Order = require("../../model/Order/Order");
+const Request = require("../../model/Request/Request");
 const User = require("../../model/user/User");
 
 //-------------------------------------
@@ -8,7 +8,7 @@ const User = require("../../model/user/User");
 const fetchOrdersCtrl = expressAsyncHandler(async (req, res) => {
   //console.log(req.user._id);
   try {
-    const order = await Order.find({ user: req.user._id }).sort({ _id: -1 });
+    const order = await Request.find({ user: req.user._id }).sort({ _id: -1 });
     res.json(order);
   } catch (error) {
     res.json(error);
@@ -21,7 +21,7 @@ const fetchOrdersCtrl = expressAsyncHandler(async (req, res) => {
 const fetchOrderCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req?.params;
   try {
-    const order = await Order.findById(req.params.id).populate(
+    const order = await Request.findById(req.params.id).populate(
       "user",
       "id firstname lastname email"
     );
@@ -41,7 +41,7 @@ const fetchOrderCtrl = expressAsyncHandler(async (req, res) => {
 //-------------------------------------
 const orderPayCtrl = expressAsyncHandler(async (req, res) => {
   console.log(req.body);
-  const order = await Order.findById(req.params.id);
+  const order = await Request.findById(req.params.id);
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();

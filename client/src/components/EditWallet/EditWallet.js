@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
+
 import moneySVG from "../../img/money.svg";
 import ErrorDisplayMessage from "../ErrorDisplayMessage";
 import SuccessMessage from "../SuccessMessage";

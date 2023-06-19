@@ -1,53 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  listMyOrdersAction,
-  getOrderDetailsAction,
-  payOrderAction,
-} from "./ordersAction";
+  listMyRequestsAction,
+  getRequestDetailsAction,
+  payRequestAction,
+} from "./requestsAction";
 
 //--------------
 //slices
 //--------------
-const orderSlices = createSlice({
-  name: "order",
+const requestSlices = createSlice({
+  name: "request",
   initialState: {},
   extraReducers: (builder) => {
     //fetch all
-    builder.addCase(listMyOrdersAction.pending, (state, action) => {
-      state.orderLoading = true;
-      state.orderAppErr = undefined;
-      state.orderServerErr = undefined;
+    builder.addCase(listMyRequestsAction.pending, (state, action) => {
+      state.reqLoading = true;
+      state.reqAppErr = undefined;
+      state.reqServerErr = undefined;
     });
-    builder.addCase(listMyOrdersAction.fulfilled, (state, action) => {
-      state.orderLoading = false;
-      state.orderList = action?.payload;
-      state.orderAppErr = undefined;
-      state.orderServerErr = undefined;
-      state.isOrderCreated = false;
+    builder.addCase(listMyRequestsAction.fulfilled, (state, action) => {
+      state.reqLoading = false;
+      state.reqList = action?.payload;
+      state.reqAppErr = undefined;
+      state.reqrServerErr = undefined;
+      state.isReqCreated = false;
     });
-    builder.addCase(listMyOrdersAction.rejected, (state, action) => {
-      state.orderLoading = false;
-      state.orderAppErr = action?.payload?.message;
-      state.orderServerErr = action?.error?.message;
+    builder.addCase(listMyRequestsAction.rejected, (state, action) => {
+      state.reqLoading = false;
+      state.reqAppErr = action?.payload?.message;
+      state.reqServerErr = action?.error?.message;
     });
 
     //fetch single
-    builder.addCase(getOrderDetailsAction.pending, (state, action) => {
-      state.orderLoading = true;
-      state.orderAppErr = undefined;
-      state.orderServerErr = undefined;
+    builder.addCase(getRequestDetailsAction.pending, (state, action) => {
+      state.reqLoading = true;
+      state.reqAppErr = undefined;
+      state.reqServerErr = undefined;
     });
-    builder.addCase(getOrderDetailsAction.fulfilled, (state, action) => {
-      state.orderLoading = false;
-      state.orderDetails = action?.payload;
-      state.orderAppErr = undefined;
-      state.orderServerErr = undefined;
-      state.isOrderCreated = false;
+    builder.addCase(getRequestDetailsAction.fulfilled, (state, action) => {
+      state.reqLoading = false;
+      state.reqDetails = action?.payload;
+      state.reqAppErr = undefined;
+      state.reqServerErr = undefined;
+      state.isReqCreated = false;
     });
-    builder.addCase(getOrderDetailsAction.rejected, (state, action) => {
-      state.orderLoading = false;
-      state.orderAppErr = action?.payload?.message;
-      state.orderServerErr = action?.error?.message;
+    builder.addCase(getRequestDetailsAction.rejected, (state, action) => {
+      state.reqLoading = false;
+      state.reqAppErr = action?.payload?.message;
+      state.reqServerErr = action?.error?.message;
     });
 
     //Delete
@@ -98,4 +98,4 @@ const orderSlices = createSlice({
   },
 });
 
-export default orderSlices.reducer;
+export default requestSlices.reducer;

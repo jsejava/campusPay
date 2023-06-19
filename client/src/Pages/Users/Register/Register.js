@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -13,12 +13,14 @@ import { addNewWalAction } from "../../../redux/slices/wallet/walletAction";
 const formSchema = Yup.object({
   email: Yup.string().required("Email is required"),
   password: Yup.string().required("Password is required"),
-  pin: Yup.string().required("pin is required"),
+  // pin: Yup.string().required("pin is required"),
   firstname: Yup.string().required("First name is required"),
   lastname: Yup.string().required("Last name is required"),
 });
 
 const Register = ({ history }) => {
+  useEffect(() => {}, []);
+
   //dispatch action
   const dispatch = useDispatch();
   //store state
@@ -35,13 +37,13 @@ const Register = ({ history }) => {
       password: "",
       firstname: "",
       lastname: "",
-      pin: "",
+      // pin: "",
       amount: 5,
     },
     onSubmit: (values) => {
-      console.log(values);
+      ////console.log(values);
       dispatch(registerUserAction(values));
-      // dispatch(addNewWalAction(values));
+      //// dispatch(addNewWalAction(values));
     },
     validationSchema: formSchema,
   });
@@ -49,7 +51,7 @@ const Register = ({ history }) => {
   //Redirect
   setTimeout(() => {
     if (isRegistered) history.push("/profile");
-  }, 3000);
+  }, 5000);
   //console.log(isRegistered);
   return (
     <section className="position-relative py-5 overflow-hidden vh-100">
@@ -70,86 +72,95 @@ const Register = ({ history }) => {
                 <span className="text-muted">New User</span>
                 <h3 className="fw-bold mb-5">Register</h3>
                 {/* Success msg */}
-                {registered && (
-                  <SuccessMessage msg="Register Successfully. You will be redirected soon" />
-                )}
-                {/* Display Err */}
-                {userServerErr || userAppErr ? (
-                  <div class="alert alert-danger" role="alert">
-                    {userServerErr}
-                    {userAppErr}
-                  </div>
-                ) : null}
-                <input
-                  value={formik.values.firstname}
-                  onBlur={formik.handleBlur("firstname")}
-                  onChange={formik.handleChange("firstname")}
-                  className="form-control mb-2"
-                  type="text"
-                  placeholder="First Name"
-                />
-                {/* Err */}
-                <div className="text-danger mb-2">
-                  {formik.touched.firstname && formik.errors.firstname}
-                </div>
-                <input
-                  value={formik.values.lastname}
-                  onBlur={formik.handleBlur("lastname")}
-                  onChange={formik.handleChange("lastname")}
-                  className="form-control mb-2"
-                  type="TEXT"
-                  placeholder="Last Name"
-                />
-                {/* Err */}
-                <div className="text-danger mb-2">
-                  {formik.touched.lastname && formik.errors.lastname}
-                </div>
-                <input
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur("email")}
-                  onChange={formik.handleChange("email")}
-                  className="form-control mb-2"
-                  type="email"
-                  placeholder="Email"
-                />
-                {/* Err */}
-                <div className="text-danger mb-2">
-                  {formik.touched.email && formik.errors.email}
-                </div>
-                <input
-                  value={formik.values.password}
-                  onBlur={formik.handleBlur("password")}
-                  onChange={formik.handleChange("password")}
-                  className="form-control mb-2"
-                  type="password"
-                  placeholder="Password"
-                />
-                {/* Err */}
-                <div className="text-danger mb-2">
-                  {formik.touched.password && formik.errors.password}
-                </div>
-                <input
-                  value={formik.values.pin}
-                  onBlur={formik.handleBlur("pin")}
-                  onChange={formik.handleChange("pin")}
-                  className="form-control mb-2"
-                  type="password"
-                  placeholder="pin"
-                />
-                {/* Err */}
-                <div className="text-danger mb-2">
-                  {formik.touched.pin && formik.errors.pin}
-                </div>
-                {/* userLoading */}
-                {userLoading ? (
-                  <DisabledButton />
+                {registered ? (
+                  <>
+                    <SuccessMessage
+                      msg=" Registration Successfully"
+                      tipOne=" An Email is sent to your mail please verifier"
+                      tipTwo=" For a successul Login"
+                    />
+                  </>
                 ) : (
-                  <button
-                    type="submit"
-                    className="btn btn-primary py-2 w-100 mb-4"
-                  >
-                    Register
-                  </button>
+                  <>
+                    {/* Display Err */}
+                    {userServerErr || userAppErr ? (
+                      <div class="alert alert-danger" role="alert">
+                        {userServerErr}
+                        {userAppErr}
+                      </div>
+                    ) : null}
+                    <input
+                      value={formik.values.firstname}
+                      onBlur={formik.handleBlur("firstname")}
+                      onChange={formik.handleChange("firstname")}
+                      className="form-control mb-2"
+                      type="text"
+                      placeholder="First Name"
+                    />
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.firstname && formik.errors.firstname}
+                    </div>
+                    <input
+                      value={formik.values.lastname}
+                      onBlur={formik.handleBlur("lastname")}
+                      onChange={formik.handleChange("lastname")}
+                      className="form-control mb-2"
+                      type="TEXT"
+                      placeholder="Last Name"
+                    />
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.lastname && formik.errors.lastname}
+                    </div>
+                    <input
+                      value={formik.values.email}
+                      onBlur={formik.handleBlur("email")}
+                      onChange={formik.handleChange("email")}
+                      className="form-control mb-2"
+                      type="email"
+                      placeholder="Email"
+                    />
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.email && formik.errors.email}
+                    </div>
+                    <input
+                      value={formik.values.password}
+                      onBlur={formik.handleBlur("password")}
+                      onChange={formik.handleChange("password")}
+                      className="form-control mb-2"
+                      type="password"
+                      placeholder="Password"
+                    />
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.password && formik.errors.password}
+                    </div>
+                    {/* <input
+                      value={formik.values.pin}
+                      onBlur={formik.handleBlur("pin")}
+                      onChange={formik.handleChange("pin")}
+                      className="form-control mb-2"
+                      type="password"
+                      placeholder="pin"
+                    /> */}
+                    {/* Err */}
+                    {/* <div className="text-danger mb-2">
+                      {formik.touched.pin && formik.errors.pin}
+                    </div> */}
+                    {/* userLoading */}
+                    {userLoading ? (
+                      <DisabledButton />
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn btn-primary py-2 w-100 mb-4"
+                      >
+                        Register
+                      </button>
+                    )}
+                  </>
                 )}
               </form>
             </div>

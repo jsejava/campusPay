@@ -19,8 +19,8 @@ import {
   logoutAction,
   updateUserWalletAction,
 } from "../../redux/slices/users/usersSlices";
-import pay from "../../img/pay-1.png";
-const AddExpense = () => {
+
+const AddReqExpense = () => {
   // const cookieval = document.cookie;
   let at = "At";
   let btn = "Send";
@@ -28,7 +28,7 @@ const AddExpense = () => {
     .split(";")
     .find((row) => row.startsWith("item="))
     ?.split("=")[1];
-  console.log(item);
+  //console.log(item);
   const total = document.cookie
     .split(" ")
     .find((row) => row.startsWith("total="))
@@ -147,11 +147,11 @@ const AddExpense = () => {
   //Redirect
   useEffect(() => {
     if (isExpCreated) {
-      document.cookie = `total=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure;path=/add-expense`;
-      document.cookie = `item=; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/add-expense`;
+      document.cookie = `total=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure;path=/add-reqexp`;
+      document.cookie = `item=; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/add-reqexp`;
 
-      document.cookie = `userid=${userid}; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/pay`;
-      document.cookie = `useremail=${useremail} expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/pay`;
+      document.cookie = `userid=${userid}; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/service/pay`;
+      document.cookie = `useremail=${useremail} expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure;path=/service/pay`;
 
       //window.location.replace("http://localhost:3000/ConfOrder");
       //navigate(history, "user-profile-expenses", undefined);
@@ -159,7 +159,7 @@ const AddExpense = () => {
       // <Balance />;
       //Redirect
       setTimeout(() => {
-        window.location.replace("http://localhost:3000/pay");
+        window.location.replace("http://localhost:3000/service/pay");
       }, 3000);
 
       // console.log("wallet", incResult);
@@ -189,21 +189,6 @@ const AddExpense = () => {
           {/* <Header /> */}
           <div className="container">
             {/* <div className="row order-detail"> */}
-            {/* <div
-              style={{
-                // display: "flex",
-                // height: "10px",
-                // width: "100%",
-                // justifyContent: "center",
-                // alignItems: "center",
-                // flexDirection: "column",
-                marginTop: "50px",
-              }}
-              className="row order-detail"
-            > */}
-            {/* <div className="col-lg-8 col-sm-8 mb-lg-8 mb-5 mb-sm-0"> */}
-            {/* <div className="row "> */}
-            {/* <div className="col-md-8 center"></div> */}
             <div
               style={{
                 display: "flex",
@@ -232,24 +217,27 @@ const AddExpense = () => {
                 src="https://media.istockphoto.com/id/473976598/photo/small-person-standing-on-word-no.jpg?s=612x612&w=0&k=20&c=AY3FjTdXaRHBovy5vuGirMypxNDQpX42G2E1fd6F1dY="
               />
             </div>
-            {/* <div className="col-md-8 center"></div> */}
-            {/* </div> */}
           </div>
-          {/* </div> */}
         </>
       ) : (
         <section className="py-5 bg-danger vh-100">
           <div className="container text-center">
             <div className="d-inline-block mb-5">
+              {/* <img
+              className="img-fluid"
+              src={moneySVG}
+              alt="SVGeXPENSES"
+              width="200"
+            /> */}
               <img
                 className="img-fluid"
-                src={pay}
+                src="./logo/pay-7.png"
                 alt="SVGeXPENSES"
-                width="100"
+                width="150"
               />
             </div>
             <div className="row mb-4">
-              {/* <div className="col-12 col-md-8 col-lg-5 mx-auto"> 
+              {/* <div className="col-12 col-md-8 col-lg-5 mx-auto">
               <UserProfileStats
                 numOfTransExp={profile?.expenses?.length}
                 avgExp={expResult?.avg}
@@ -269,7 +257,7 @@ const AddExpense = () => {
                     <span className="text-muted">CampusPay</span>
                     <h2 className="fw-light">Payments</h2>
                     <i className="mb-4">
-                      Refresh The Page To See On Going Orders
+                      Refresh The Page To See On Going Request
                     </i>
                     {/* Display income Err */}
                     {expServerErr || expAppErr ? (
@@ -343,9 +331,9 @@ const AddExpense = () => {
                       ) : (
                         <a
                           className="btn btn-success w-100"
-                          href="http://localhost:3000/shop"
+                          href="http://localhost:3000/service"
                         >
-                          Click to Make A New Purchase
+                          Click For A New Service Request
                         </a>
                       )}
                       {/* <i className="btn btn-success">{total} </i>{" "} */}
@@ -397,4 +385,4 @@ const AddExpense = () => {
   );
 };
 
-export default AddExpense;
+export default AddReqExpense;

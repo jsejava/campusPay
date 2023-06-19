@@ -35,7 +35,7 @@ const Profile = () => {
     orderServerErr,
     isOrderCreated,
   } = order;
-  console.log(orderList);
+  //console.log(orderList);
 
   //income
   useEffect(() => {
@@ -203,10 +203,17 @@ const Profile = () => {
               <div className="d-flex align-items-center justify-content-center">
                 <button
                   onClick={() => navigate(history, "user-profile-expenses", "")}
-                  className="btn me-4 w-100 btn-outline-danger d-flex align-items-center justify-content-center"
+                  className="btn me-4 w-50 btn-outline-danger d-flex align-items-center justify-content-center"
                 >
                   <span>History</span>
                 </button>
+                <button
+                  onClick={() => navigate(history, "order-list", "")}
+                  className="btn me-4 w-50 btn-outline-danger d-flex align-items-center justify-content-center"
+                >
+                  <span>Orders - Requests</span>
+                </button>
+
                 <button
                   onClick={() => navigate(history, "user-profile-fees", "")}
                   className="btn me-4 w-100 btn-outline-info d-flex align-items-center justify-content-center"

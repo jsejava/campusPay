@@ -14,4 +14,12 @@ const dbConnect = async () => {
   }
 };
 
+mongoose.connection.on("disconnected", () => {
+  console.log("mongoDB disconnected!!!");
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("mongoDB connected!!!");
+});
+
 module.exports = dbConnect;

@@ -161,7 +161,7 @@ export const deleteExpenseAction = createAsyncThunk(
 export const updateWalletAction = createAsyncThunk(
   "expense/update",
   async (expense, { rejectWithValue, getState, dispatch }) => {
-    console.log(expense);
+    // console.log(expense);
     //get user token
     const user = getState()?.users;
     const { userAuth } = user;

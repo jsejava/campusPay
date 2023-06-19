@@ -52,10 +52,11 @@ const accountsStatsCtrl = expressAsyncHandler(async (req, res) => {
     },
   ]);
 
-  const profit =
-    incomeStats[0]?.totalInc -
-    (expensesStats[0]?.totalExp + feesStats[0]?.totalFees);
-  res.json({ expensesStats, incomeStats, feesStats, profit });
+  // const profit =
+  //   incomeStats[0]?.totalInc +
+  //   expensesStats[0]?.totalExp +
+  //   feesStats[0]?.totalFees;
+  res.json({ expensesStats, incomeStats, feesStats });
 });
 
 module.exports = {

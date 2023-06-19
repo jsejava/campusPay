@@ -169,7 +169,7 @@ export const updateUserWalletAction = createAsyncThunk(
 export const updateUserAction = createAsyncThunk(
   "users/update",
   async (userData, { rejectWithValue, getState, dispatch }) => {
-    console.log("userData", userData);
+    // console.log("userData", userData);
     //get user token
     const user = getState()?.users;
     const { userAuth } = user;
@@ -183,10 +183,12 @@ export const updateUserAction = createAsyncThunk(
       const { data } = await axios.put(
         `${baseUrl}/api/users/${userData?.id}`,
         {
-          lastname: userData?.lastname,
-          firstname: userData?.firstname,
-          email: userData?.email,
-          Wallet: userData?.Wallet,
+          pin: userData?.pin,
+          newpin: userData?.newpin,
+          // lastname: userData?.lastname,
+          // firstname: userData?.firstname,
+          // email: userData?.email,
+          // Wallet: userData?.Wallet,
         },
         config
       );

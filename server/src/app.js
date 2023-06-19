@@ -7,18 +7,22 @@ const { errorHandler, notFound } = require("./middlewares/error/errorHandler");
 const incomeRoute = require("./route/income/income");
 const feesRoute = require("./route/fees/fees");
 const expenseRoute = require("./route/expense/expense");
-const walletRoute = require("./route/wallet/wallet");
+
 const accountStatsRoute = require("./route/stats/stats");
 const orderRoute = require("./route/order/order");
+
+const morgan = require("morgan");
+const requestRoute = require("./route/Request/Request");
+
 // dotenv;
 dotenv.config();
 // dotenv.config({ path: "../../config.env" });
 const app = express();
 app.get("/", (req, res) => {
   res.json({
-    app: "Expenses-Tracker",
-    developer: "inovotek",
-    youtubeChannel: "i-Novotek",
+    app: "CampusPay",
+    developer: "Achilles Enam",
+    school: "CUG",
   });
 });
 //DB
@@ -36,14 +40,30 @@ app.use("/api/users", userRoutes);
 app.use("/api/incomes", incomeRoute);
 //Expenses
 app.use("/api/expenses", expenseRoute);
-//Wallet
-app.use("/api/wallet", walletRoute);
+
 //Fess
 app.use("/api/fees", feesRoute);
 //stats
 app.use("/api/stats", accountStatsRoute);
 //Order
 app.use("/api/orders", orderRoute);
+
+//Request
+app.use("/api/requests", requestRoute);
+
+// register view engine
+app.set("view engine", "ejs");
+
+//listen for request
+
+// middleware & static files
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+// route
+app.get("http://localhost:5001/api/users/verify/:token", (req, res) => {
+  res.render("about");
+});
 //err handler
 app.use(notFound);
 app.use(errorHandler);

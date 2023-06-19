@@ -11,8 +11,8 @@ const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
   const Wallet = req.user.Wallet;
   const userFound = await User.findOne({ email });
   const wallet = await User.findOne({ Wallet });
-  console.log("amount", amount);
-  console.log("wallet", wallet.Wallet);
+  // console.log("amount", amount);
+  // console.log("wallet", wallet.Wallet);
   if (userFound && (await userFound?.isPinMatched(description))) {
     if (wallet && (await wallet.Wallet) > amount) {
       try {

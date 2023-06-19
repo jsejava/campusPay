@@ -12,12 +12,11 @@ const Dashboard = () => {
   }, []);
   const statistics = useSelector((state) => state.statistics);
   const { statsLoading, appErr, serverErr, stats } = statistics;
-  // console.log({ stats });
+
   const exp = stats?.expensesStats[0];
   const inc = stats?.incomeStats[0];
   const fees = stats?.feesStats[0];
-  // const fees = stats?.feesStats[0];
-  // console.log({ fees });
+
   return (
     <>
       {/* <h1>NET: {stats?.profit}</h1>
@@ -53,7 +52,7 @@ const Dashboard = () => {
             totalInc={inc?.totalInc}
             minInc={inc?.minInc}
             maxInc={inc?.maxInc}
-            netProfit={stats?.profit}
+            // netProfit={stats?.profit}
             numOfTransFees={fees?.totalRecords}
             avgFees={fees?.averageFees}
             totalFees={fees?.totalFees}

@@ -44,7 +44,7 @@ const Login = () => {
 
   const y = JSON.parse(x);
   const adminAuth = y?.isAdmin;
-  console.log(adminAuth);
+  //console.log(adminAuth);
 
   //Redirect
   useEffect(() => {

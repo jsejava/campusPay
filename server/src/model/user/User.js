@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema(
     },
     pin: {
       type: String,
-      required: [true, "Hei buddy pin is required"],
     },
     Wallet: {
       type: Number,
@@ -34,6 +33,9 @@ const userSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    isVerified: {
+      type: Boolean,
     },
   },
   {
@@ -84,15 +86,15 @@ userSchema.methods.isPasswordMatched = async function (enteredPassword) {
 };
 
 //Hash pin
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("pin")) {
-    next();
-  }
-  //hash pin
-  const salt = await bcrypt.genSalt(10);
-  this.pin = await bcrypt.hash(this.pin, salt);
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   if (!this.isModified("pin")) {
+//     next();
+//   }
+//hash pin
+//   const salt = await bcrypt.genSalt(10);
+//   this.pin = await bcrypt.hash(this.pin, salt);
+//   next();
+// });
 //match Pin
 userSchema.methods.isPinMatched = async function (enteredPin) {
   return await bcrypt.compare(enteredPin, this.pin);

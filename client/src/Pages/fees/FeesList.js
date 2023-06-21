@@ -70,12 +70,12 @@ const FeesList = () => {
                     </th>
                     <th scope="col">
                       <button className="btn d-flex align-items-centerr text-uppercase">
-                        <small>Product</small>
+                        <small>ID Number</small>
                       </button>
                     </th>
                     <th scope="col">
                       <button className="btn d-flex align-items-centerr text-uppercase">
-                        <small>Secret Key</small>
+                        <small></small>
                       </button>
                     </th>
                     <th scope="col">
@@ -88,11 +88,11 @@ const FeesList = () => {
                         <small>Date</small>
                       </button>
                     </th>
-                    <th scope="col">
+                    {/* <th scope="col">
                       <button className="btn d-flex align-items-centerr text-uppercase">
                         <small>Action</small>
                       </button>
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>

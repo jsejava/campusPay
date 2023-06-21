@@ -72,7 +72,7 @@ const DashboardData = ({
                 ></span>
                 {/* Expenses Start */}
                 <span class="badge fs-2 bg-primary-light text-primary">
-                  Campus Store
+                  Order & Request
                 </span>
               </div>
               <h1 class="mb-4 p-2">{formattedTotalExp}</h1>

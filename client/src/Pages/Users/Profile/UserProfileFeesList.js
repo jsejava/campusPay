@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ContentDetails from "../../../components/ContentDetails/ContentDetails";
 
 import LoadingComponent from "../../../components/LoadingComponent";
-import UserProfileContentDetails_ from "../../../components/UserProfile/UserProfileContentDetails_";
+import UserProfileFeesListDetails from "../../../components/UserProfile/UserProfileFeesListDetails";
 import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 
 const UserProfileFeesList = () => {
@@ -59,7 +59,7 @@ const UserProfileFeesList = () => {
                   </th>
                   {/* <th scope="col">
                     <button className="btn d-flex align-items-centerr text-uppercase">
-                      <small>Action</small>
+                      <small></small>
                     </button>
                   </th> */}
                 </tr>
@@ -74,7 +74,7 @@ const UserProfileFeesList = () => {
                     <h2>No Transaction Found</h2>
                   ) : (
                     profile?.fees?.map((exp) => (
-                      <UserProfileContentDetails_ item={exp} key={exp?._id} />
+                      <UserProfileFeesListDetails item={exp} key={exp?._id} />
                     ))
                   )}
                 </>

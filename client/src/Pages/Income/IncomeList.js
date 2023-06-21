@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import ContentDetails from "../../components/ContentDetails/ContentDetails";
+import IncomeListContentDetails from "../../components/ContentDetails/IncomeListContentDetails";
 import ErrorDisplayMessage from "../../components/ErrorDisplayMessage";
 
 import LoadingComponent from "../../components/Loading/Loading";
@@ -91,7 +91,7 @@ const IncomeList = ({ location: { state } }) => {
                     <h2>No Income Found</h2>
                   ) : (
                     incomeList?.docs?.map((exp) => (
-                      <ContentDetails
+                      <IncomeListContentDetails
                         dataType={dataType}
                         item={exp}
                         key={exp?._id}

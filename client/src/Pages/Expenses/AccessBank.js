@@ -19,7 +19,7 @@ import {
   updateUserWalletAction,
 } from "../../redux/slices/users/usersSlices";
 
-const Balance = () => {
+const AccessBank = () => {
   const [expResult, setExpResult] = useState([]);
   const [incResult, setIncResult] = useState([]);
   const [feesResult, setFeesResult] = useState([]);
@@ -81,4 +81,4 @@ const Balance = () => {
   return <></>;
 };
 
-export default Balance;
+export default AccessBank;

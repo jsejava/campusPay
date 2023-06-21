@@ -7,6 +7,7 @@ import useDateFormatter from "../../hooks/useDateFormatter";
 
 const ContentDetails = ({ item, dataType }) => {
   const history = useHistory();
+  console.log(item);
   return (
     <>
       <tr className="align-middle text-dark">
@@ -16,7 +17,7 @@ const ContentDetails = ({ item, dataType }) => {
           </th>
         )}
         <td className="p-6">{item?.title}</td>
-        <td className="p-6">{}</td>
+        <td className="ps-4">{item?.description}</td>
         <td className="ps-4">{item?.amount} GH₵</td>
         <td className="p-6">{useDateFormatter(item?.createdAt)}</td>
         {/* <td className="p-6"> */}

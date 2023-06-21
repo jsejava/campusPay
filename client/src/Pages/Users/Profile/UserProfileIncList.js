@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ContentDetails from "../../../components/ContentDetails/ContentDetails";
 
 import LoadingComponent from "../../../components/LoadingComponent";
-import UserProfileContentDetails from "../../../components/UserProfile/UserProfileContentDetails";
+import UserProfileIncListDetails from "../../../components/UserProfile/UserProfileIncListDetails";
 import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 
 const UserProfileIncList = () => {
@@ -25,7 +25,7 @@ const UserProfileIncList = () => {
             <div className="pt-8 px-8 mb-8">
               <h6 className="mb-0 fs-3">Recent Deposits</h6>
               <p className="mb-0">
-                Below is the history of your Deposits transactions records
+                Below is the history of transactions records
               </p>
               {/* <Link
                 to="/add-income"
@@ -74,7 +74,7 @@ const UserProfileIncList = () => {
                     <h2>No Deposits Found</h2>
                   ) : (
                     profile?.income?.map((exp) => (
-                      <UserProfileContentDetails item={exp} key={exp?._id} />
+                      <UserProfileIncListDetails item={exp} key={exp?._id} />
                     ))
                   )}
                 </>

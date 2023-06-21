@@ -3,17 +3,19 @@ import { useHistory } from "react-router-dom";
 import useDateFormatter from "../../hooks/useDateFormatter";
 import navigate from "../../utils/navigate";
 
-const UserProfileContentDetails_ = ({ item }) => {
+const UserProfileIncListDetails = ({ item }) => {
   const history = useHistory();
-  // console.log(item);
+  console.log(item);
   return (
     <tr className="align-middle text-dark">
       <td className="p-6">{item?.title}</td>
-      {/* <td className="p-6">{item?.description}</td> */}
-      <td className="p-6">{item?.amount}</td>
+
+      <td className="ps-3">{item?.description}</td>
+      <td className="ps-3">{item?.amount} GHC</td>
+
       <td className="p-6">{useDateFormatter(item?.createdAt)}</td>
-      <td className="p-6">
-        {/* <button
+      {/* <td className="p-6"> */}
+      {/* <button
           onClick={() => navigate(history, "edit", item)}
           className="badge bg-success-light text-success"
         > 
@@ -32,9 +34,9 @@ const UserProfileContentDetails_ = ({ item }) => {
             />
           </svg>
         </button> */}
-      </td>
+      {/* </td> */}
     </tr>
   );
 };
 
-export default UserProfileContentDetails_;
+export default UserProfileIncListDetails;

@@ -26,7 +26,7 @@ import AdNavbar from "./components/Navigation/AdNavbar";
 import AddFees from "./Pages/fees/AddFees";
 import UserProfileFeesList from "./Pages/Users/Profile/UserProfileFeesList";
 import FeesList from "./Pages/fees/FeesList";
-import Balance from "./Pages/Expenses/Balance";
+import AccessBank from "./Pages/Expenses/AccessBank";
 import Paysuccess from "./components/Alert/Paysuccess";
 
 import Orders from "./Pages/Ordres/Orders";
@@ -43,7 +43,7 @@ const App = () => {
   return (
     <Provider template={AlertTemplate} {...options}>
       <BrowserRouter>
-        <Balance />
+        <AccessBank />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />

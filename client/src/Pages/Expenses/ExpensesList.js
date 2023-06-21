@@ -48,10 +48,9 @@ const ExpensesList = () => {
                 href="#"
               ></a>
               <div className="pt-8 px-8 mb-8">
-                <h6 className="mb-0 fs-3">Campus Store transactions</h6>
+                <h6 className="mb-0 fs-3">Products And Services</h6>
                 <p className="mb-0">
-                  Below is the history of Campus Store payments transactions
-                  records
+                  Below is the history of transactions records
                 </p>
                 {/* <Link
                   to="/add-expense"
@@ -75,7 +74,7 @@ const ExpensesList = () => {
                     </th>
                     <th scope="col">
                       <button className="btn d-flex align-items-centerr text-uppercase">
-                        <small>Secret Key</small>
+                        <small></small>
                       </button>
                     </th>
                     <th scope="col">

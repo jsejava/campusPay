@@ -53,7 +53,7 @@ const orderPayCtrl = expressAsyncHandler(async (req, res) => {
 
     const updatedOrder = await order.save();
     res.json(updatedOrder);
-    console.log("PAY BACKEND");
+    // console.log("PAY BACKEND");
   } else {
     res.status(404);
     throw new Error("Order Not Found");

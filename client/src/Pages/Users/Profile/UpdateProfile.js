@@ -3,12 +3,14 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-
 import ErrorDisplayMessage from "../../../components/ErrorDisplayMessage";
-
 import { updateUserAction } from "../../../redux/slices/users/usersSlices";
 import navigate from "../../../utils/navigate";
 import SuccessMessage from "../../../components/SuccessMessage";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 //Form validation
 const formSchema = Yup.object({
@@ -51,10 +53,29 @@ const UpdateProfile = ({ location: { state: data } }) => {
     },
     validationSchema: formSchema,
   });
-
   if (isUpdated) {
+    //alert("PIN update");
+    let timerInterval;
+    Swal.fire({
+      title: "PIN Changed Successfully",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {}, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    });
+
     navigate(history, "profile", undefined);
   }
+
   return (
     <>
       <section className="py-5 bg-success vh-100">
@@ -62,62 +83,60 @@ const UpdateProfile = ({ location: { state: data } }) => {
           <div className="row mb-4">
             <div className="col-12 col-md-8 col-lg-5 mx-auto">
               <div className="p-4 shadow-sm rounded bg-white">
-                {isUpdated ? (
+                {/* {isUpdated ? (
                   <SuccessMessage
                     msg=" Registration Successfully"
                     tipOne=" An Email is sent to your mail please verifier"
                     tipTwo=" For a successul Login"
                   />
-                ) : (
-                  <>
-                    {/* Display Err */}
-                    {userAppErr || userServerErr ? (
-                      <div class="alert alert-danger" role="alert">
-                        {userAppErr || userServerErr}
-                      </div>
-                    ) : null}
-                    <form onSubmit={formik.handleSubmit}>
-                      <span className="text-muted">Update Profile</span>
-                      <h4 className="mb-4 fw-light">
-                        <i>
-                          Hi,{" "}
-                          <b className="text-primary">
-                            {data?.data?.firstname}
-                          </b>{" "}
-                          Change Your
-                        </i>
-                      </h4>
+                ) : ( */}
+                <>
+                  {/* Display Err */}
+                  {userAppErr || userServerErr ? (
+                    <div class="alert alert-danger" role="alert">
+                      {userAppErr || userServerErr}
+                    </div>
+                  ) : null}
+                  <form onSubmit={formik.handleSubmit}>
+                    <span className="text-muted">Update Profile</span>
+                    <h4 className="mb-4 fw-light">
+                      <i>
+                        Hi,{" "}
+                        <b className="text-primary">{data?.data?.firstname}</b>{" "}
+                        Change Your PIN
+                      </i>
+                    </h4>
 
-                      <div className="mb-3 input-group">
-                        <input
-                          value={formik.values.pin}
-                          onBlur={formik.handleBlur("pin")}
-                          onChange={formik.handleChange("pin")}
-                          className="form-control"
-                          type="text"
-                          placeholder="Enter Current Pin"
-                        />
-                      </div>
-                      {/* Err */}
-                      <div className="text-danger mb-2">
-                        {formik.touched.pin && formik.errors.pin}
-                      </div>
-                      <div className="mb-3 input-group">
-                        <input
-                          value={formik.values.newpin}
-                          onBlur={formik.handleBlur("newpin")}
-                          onChange={formik.handleChange("newpin")}
-                          className="form-control"
-                          type="text"
-                          placeholder="Enter New Pin"
-                        />
-                      </div>
-                      {/* Err */}
-                      <div className="text-danger mb-2">
-                        {formik.touched.newpin && formik.errors.newpin}
-                      </div>
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.pin}
+                        onBlur={formik.handleBlur("pin")}
+                        onChange={formik.handleChange("pin")}
+                        className="form-control"
+                        type="password"
+                        placeholder="Enter Current Pin"
+                      />
+                    </div>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.pin && formik.errors.pin}
+                    </div>
+                    <div className="mb-3 input-group">
+                      <input
+                        value={formik.values.newpin}
+                        onBlur={formik.handleBlur("newpin")}
+                        onChange={formik.handleChange("newpin")}
+                        className="form-control"
+                        type="password"
+                        placeholder="Enter New Pin"
+                      />
+                    </div>
+                    {/* Err */}
+                    <div className="text-danger mb-2">
+                      {formik.touched.newpin && formik.errors.newpin}
+                    </div>
 
-                      {/* <div className="mb-3 input-group">
+                    {/* <div className="mb-3 input-group">
                     <input
                       value={formik.values.firstname}
                       onBlur={formik.handleBlur("firstname")}
@@ -127,8 +146,8 @@ const UpdateProfile = ({ location: { state: data } }) => {
                       placeholder="Enter firstname"
                     />
                   </div> */}
-                      {/* Err */}
-                      {/* <div className="text-danger mb-2">
+                    {/* Err */}
+                    {/* <div className="text-danger mb-2">
                     {formik.touched.firstname && formik.errors.firstname}
                   </div>
                   <div className="mb-3 input-group">
@@ -141,11 +160,11 @@ const UpdateProfile = ({ location: { state: data } }) => {
                       placeholder="Enter lastname"
                     />
                   </div> */}
-                      {/* Err */}
-                      {/* <div className="text-danger mb-2">
+                    {/* Err */}
+                    {/* <div className="text-danger mb-2">
                     {formik.touched.lastname && formik.errors.lastname}
                   </div> */}
-                      {/* <div className="mb-3 input-group">
+                    {/* <div className="mb-3 input-group">
                     <input
                       value={formik.values.email}
                       onBlur={formik.handleBlur("email")}
@@ -155,23 +174,23 @@ const UpdateProfile = ({ location: { state: data } }) => {
                       placeholder="Enter email"
                     />
                   </div> */}
-                      {/* Err */}
-                      {/* <div className="text-danger mb-2">
+                    {/* Err */}
+                    {/* <div className="text-danger mb-2">
                     {formik.touched.email && formik.errors.email}
                   </div> */}
 
-                      <div
-                        class="btn-group"
-                        role="group"
-                        aria-label="Basic mixed styles example"
-                      >
-                        <button type="submit" class="btn btn-warning">
-                          Update
-                        </button>
-                      </div>
-                    </form>
-                  </>
-                )}
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="submit" class="btn btn-warning">
+                        Update
+                      </button>
+                    </div>
+                  </form>
+                </>
+                {/* )} */}
               </div>
             </div>
           </div>

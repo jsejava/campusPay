@@ -203,20 +203,26 @@ const Profile = () => {
               <div className="d-flex align-items-center justify-content-center">
                 <button
                   onClick={() => navigate(history, "user-profile-expenses", "")}
-                  className="btn me-4 w-50 btn-outline-danger d-flex align-items-center justify-content-center"
+                  className="btn btn-outline-danger d-flex align-items-center justify-content-center me-5 ms-5"
                 >
                   <span>History</span>
                 </button>
                 <button
                   onClick={() => navigate(history, "order-list", "")}
-                  className="btn me-4 w-50 btn-outline-danger d-flex align-items-center justify-content-center"
+                  className="btn btn-outline-danger d-flex align-items-center justify-content-center me-5"
                 >
-                  <span>Orders - Requests</span>
+                  <span>orders</span>
+                </button>
+                <button
+                  onClick={() => navigate(history, "request-list", "")}
+                  className="btn  btn-outline-danger d-flex align-items-center justify-content-center me-5"
+                >
+                  <span>Requests</span>
                 </button>
 
                 <button
                   onClick={() => navigate(history, "user-profile-fees", "")}
-                  className="btn me-4 w-100 btn-outline-info d-flex align-items-center justify-content-center"
+                  className="btn me-4 w-100 btn-outline-info d-flex align-items-center justify-content-center "
                 >
                   <span>History</span>
                 </button>

@@ -29,7 +29,7 @@ const fetchOrderCtrl = expressAsyncHandler(async (req, res) => {
       res.json(order);
     } else {
       res.status(404);
-      throw new Error("Order Not Found");
+      throw new Error("Request Not Found");
     }
   } catch (error) {
     res.json(error);
@@ -53,10 +53,10 @@ const orderPayCtrl = expressAsyncHandler(async (req, res) => {
 
     const updatedOrder = await order.save();
     res.json(updatedOrder);
-    console.log("PAY BACKEND");
+    // console.log("PAY BACKEND");
   } else {
     res.status(404);
-    throw new Error("Order Not Found");
+    throw new Error("Request Not Found");
   }
 });
 

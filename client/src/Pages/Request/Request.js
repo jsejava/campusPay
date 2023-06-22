@@ -8,54 +8,69 @@ import { useDispatch, useSelector } from "react-redux";
 
 import LoadingComponent from "../../components/Loading/Loading";
 import ErrorDisplayMessage from "../../components/ErrorDisplayMessage";
-import { listMyOrdersAction } from "../../redux/slices/orders/ordersAction";
 
-const Orders = () => {
+import { listMyRequestsAction } from "../../redux/slices/requests/requestsAction";
+
+const Request = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listMyOrdersAction());
+    dispatch(listMyRequestsAction());
   }, []);
 
-  const order = useSelector((state) => state?.order);
-  const {
-    orderList,
-    orderLoading,
-    orderAppErr,
-    orderServerErr,
-    isOrderCreated,
-  } = order;
+  const request = useSelector((state) => state?.request);
+  const { reqList, reqLoading, reqAppErr, reqServerErr, isReqCreated } =
+    request;
+  // console.log(request);
+  // const { loading, error, orders } = props;
+  //console.log("next", orders?.length);
 
+  // const items = orderList?.map((item) => ({
+  //   value: item.name,
+  //   label: item.qty,
+  // }));
+  // console.log(items);
+  // {
+  //   orderList?.map((order) =>
+  //     order?.map((item) => ({
+  //       value: item.name,
+
+  //       label: item.qty,
+  //     }))
+  //   );
+  // }
   return (
     <>
-      {orderLoading ? (
+      {reqLoading ? (
         <LoadingComponent />
-      ) : orderAppErr || orderServerErr ? (
+      ) : reqAppErr || reqServerErr ? (
         <>
           <ErrorDisplayMessage>
-            {orderServerErr} {orderAppErr}
+            {reqServerErr} {reqAppErr}
           </ErrorDisplayMessage>
         </>
       ) : (
         <div className="container">
           <div className=" d-flex justify-content-center align-items-center flex-row">
-            <div className=" d-flex justify-content-center align-items-center flex-column me-5">
-              {orderList?.length === 0 ? (
+            {/* requests */}
+
+            <div className=" d-flex justify-content-center align-items-center flex-column">
+              {reqList?.length === 0 ? (
                 <div className="col-12 alert alert-info text-center mt-3">
-                  No Orders
+                  No Request
                   <a
                     className="btn btn-success mx-2 px-3 py-2"
-                    href="http://localhost:3000/shop"
+                    href="http://localhost:3000/service"
                     style={{
                       fontSize: "12px",
                     }}
                   >
-                    START SHOPPING
+                    START REQUESTING
                   </a>
                 </div>
               ) : (
                 <>
                   <div className="align-items-center">
-                    <h1 className="mb-4">YOUR ORDERS</h1>
+                    <h1 className="mb-4">YOUR REQUESTS</h1>
                   </div>
                   <div className="table-responsive">
                     <table className="table">
@@ -68,7 +83,7 @@ const Orders = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {orderList?.map((order) => (
+                        {reqList?.map((order) => (
                           <tr
                             className={`${
                               order.isPaid ? "alert-success" : "alert-danger"
@@ -77,7 +92,7 @@ const Orders = () => {
                           >
                             <td>
                               <a
-                                href={`/add-expense/${order._id}`}
+                                href={`/add-reqexp/${order._id}`}
                                 className="link"
                               >
                                 {order._id}
@@ -90,8 +105,8 @@ const Orders = () => {
                                 : moment(order.createdAt).calendar()}
                             </td>
                             <td>Gh₵ {order.totalPrice}</td>
-                            {/* <td>Gh₵ {order.totalPrice}</td>
-                        <td>Gh₵ {order.totalPrice}</td> */}
+                            <td>Gh₵ {order.totalPrice}</td>
+                            <td>Gh₵ {order.totalPrice}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -100,7 +115,7 @@ const Orders = () => {
                   <div className="align-items-center mb-4">
                     <p className="mb-4 mt-5">
                       <i>
-                        Click on <b className="link">Order ID </b>{" "}
+                        Click on <b className="link">Request ID </b>To{" "}
                         <b className="btn-info mb-4">Make Payement</b> If{" "}
                         <b className="alert-danger">Not Paid</b>
                       </i>
@@ -122,4 +137,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Request;

@@ -28,7 +28,7 @@ const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
       }
     } else {
       res.status(401);
-      throw new Error("insuffisance balance");
+      throw new Error("insufficient balance");
     }
   } else {
     res.status(401);

@@ -103,7 +103,7 @@ const loginUserCtrl = expressAsyncHandler(async (req, res) => {
       return res.status(400).json({ message: "Email Verification Pending" });
     }
   } else {
-    return res.status(400).json({ message: "user Not Registered!!" });
+    return res.status(400).json({ message: "User Not Registered!!" });
   }
 });
 

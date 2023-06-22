@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -19,8 +19,9 @@ const formSchema = Yup.object({
 });
 
 const Register = ({ history }) => {
-  useEffect(() => {}, []);
+  const [Empty, setEmpty] = useState(false);
 
+  // useEffect(() => {}, []);
   //dispatch action
   const dispatch = useDispatch();
   //store state
@@ -28,8 +29,8 @@ const Register = ({ history }) => {
   const { userLoading, userAppErr, userServerErr, isRegistered, registered } =
     users;
 
-  console.log("isRegistered", isRegistered);
-  console.log("registered", registered);
+  // console.log("isRegistered", isRegistered);
+  // console.log("registered", registered);
   //initialize form
   const formik = useFormik({
     initialValues: {
@@ -42,6 +43,11 @@ const Register = ({ history }) => {
     },
     onSubmit: (values) => {
       ////console.log(values);
+      if (
+        values.firstname.trim().length === 0 ||
+        values.lastname.trim().length === 0
+      )
+        return setEmpty(true);
       dispatch(registerUserAction(values));
       //// dispatch(addNewWalAction(values));
     },
@@ -100,6 +106,11 @@ const Register = ({ history }) => {
                     {/* Err */}
                     <div className="text-danger mb-2">
                       {formik.touched.firstname && formik.errors.firstname}
+                      {Empty && formik.values.firstname.trim().length <= 0 ? (
+                        <label>First Name can't be Empty</label>
+                      ) : (
+                        ""
+                      )}
                     </div>
                     <input
                       value={formik.values.lastname}
@@ -112,6 +123,11 @@ const Register = ({ history }) => {
                     {/* Err */}
                     <div className="text-danger mb-2">
                       {formik.touched.lastname && formik.errors.lastname}
+                      {Empty && formik.values.lastname.trim().length <= 0 ? (
+                        <label>Last Name can't be Empty</label>
+                      ) : (
+                        ""
+                      )}
                     </div>
                     <input
                       value={formik.values.email}

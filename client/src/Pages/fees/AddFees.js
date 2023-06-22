@@ -26,6 +26,7 @@ const formSchema = Yup.object({
 });
 
 const AddFees = () => {
+  const [Empty, setEmpty] = useState(false);
   // const cookieval = document.cookie;
   let at = "At";
   let btn = "Send";
@@ -91,14 +92,9 @@ const AddFees = () => {
       amount: total,
     },
     onSubmit: (values) => {
-      // console.log("wallet", incResult.sumTotal);
-      // console.log("amount", values.amount);
-      // const wallet = incResult.sumTotal;
-      // const amount = values.amount;
-      // if (amount > wallet) {
-      //   window.alert("insuffisance wallet");
-      //   return;
-      // }
+      ////console.log(values);
+      if (values.title.trim().length === 0) return setEmpty(true);
+
       dispatch(addNewExpAction(values));
     },
     validationSchema: formSchema,
@@ -168,7 +164,7 @@ const AddFees = () => {
   const campus = [
     { value: "CUG", label: "CUG" },
     { value: "UNER", label: "UNER" },
-    { value: "LEGON", label: "LEGON" },
+    { value: "LAGON", label: "LAGON" },
   ];
 
   return (
@@ -294,6 +290,11 @@ const AddFees = () => {
                         <div className="text-danger mb-2">
                           {formik.touched.description &&
                             formik.errors.description}
+                          {Empty && formik.values.title.trim().length <= 0 ? (
+                            <label>First ID number can't be Empty</label>
+                          ) : (
+                            ""
+                          )}
                         </div>
                         <div className="mb-3 input-group">
                           <input

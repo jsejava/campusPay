@@ -95,8 +95,8 @@ const AddExpense = () => {
     // }
   }, [profile?.income, profile?.expenses, profile?.fees, profile?.id]);
 
-  // console.log(userid);
-  // console.log(useremail);
+  console.log(userid);
+  console.log(useremail);
   //expense
 
   //const adminAuth = profile?.isAdmin;

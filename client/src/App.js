@@ -33,6 +33,7 @@ import Orders from "./Pages/Ordres/Orders";
 import AddExp from "./Pages/Expenses/AddExp";
 import AddReqExpense from "./Pages/Expenses/AddReqExpense";
 import AddReqExp from "./Pages/Expenses/AddReqExp";
+import Request from "./Pages/Request/Request";
 
 const options = {
   timeout: 50000,
@@ -112,6 +113,7 @@ const App = () => {
             component={Paysuccess}
           />
           <PrivateProtectRoute exact path="/order-list" component={Orders} />
+          <PrivateProtectRoute exact path="/request-list" component={Request} />
         </Switch>
       </BrowserRouter>
     </Provider>

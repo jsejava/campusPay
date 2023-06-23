@@ -113,7 +113,7 @@ export const fetchOrderAction = createAsyncThunk(
     //http call
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/orders/${id}`,
+        `${baseUrl}/api/orders/${id}`,
 
         config
       );

@@ -1,2 +1,2 @@
-const serviceUrl = "http://localhost:3000/service";
+const serviceUrl = "https://campus-service.netlify.app/service";
 export default serviceUrl;

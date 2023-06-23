@@ -74,7 +74,7 @@ export const payRequestAction = createAsyncThunk(
     try {
       const { data } = await axios.put(
         `${baseUrl}/api/requests/${disId}/pay`,
-        // `http://localhost:5001/api/orders/${id}/pay`,
+
         fields,
         config
       );

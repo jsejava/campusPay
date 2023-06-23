@@ -5,7 +5,6 @@ const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbID");
 const jwt = require("jsonwebtoken");
 const sendEmailtoUser = require("../../config/EmailTemplate.js");
-const sendPintoUser = require("../../config/PinTemplate.js");
 var generator = require("generate-password");
 
 const express = require("express");

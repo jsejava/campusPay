@@ -17,13 +17,9 @@ const requestRoute = require("./route/Request/Request");
 // dotenv;
 dotenv.config();
 // dotenv.config({ path: "../../config.env" });
-const app = express();
+app = express();
 app.get("/", (req, res) => {
-  res.json({
-    app: "CampusPay",
-    developer: "Achilles Enam",
-    school: "CUG",
-  });
+  res.send("Hello, World!");
 });
 //DB
 dbConnect();

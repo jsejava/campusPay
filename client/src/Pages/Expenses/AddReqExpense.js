@@ -19,6 +19,7 @@ import {
   logoutAction,
   updateUserWalletAction,
 } from "../../redux/slices/users/usersSlices";
+import homeUrl from "../../components/appUrl/homeUrl";
 
 const AddReqExpense = () => {
   // const cookieval = document.cookie;
@@ -159,7 +160,7 @@ const AddReqExpense = () => {
       // <Balance />;
       //Redirect
       setTimeout(() => {
-        window.location.replace("http://localhost:3000/service/pay");
+        window.location.replace(`${homeUrl}/service/pay`);
       }, 3000);
 
       // console.log("wallet", incResult);
@@ -328,14 +329,13 @@ const AddReqExpense = () => {
                           </div>
                           {/* Err */}
                         </>
-                      ) : (
-                        <a
-                          className="btn btn-success w-100"
-                          href="http://localhost:3000/service"
-                        >
-                          Click For A New Service Request
-                        </a>
-                      )}
+                      ) : // <a
+                      //   className="btn btn-success w-100"
+                      //   href="http://localhost:3000/service"
+                      // >
+                      //   Click For A New Service Request
+                      // </a>
+                      null}
                       {/* <i className="btn btn-success">{total} </i>{" "} */}
                       {/* <i className="btn btn-primary">Gh₵</i>{" "} */}
                       {/* <input

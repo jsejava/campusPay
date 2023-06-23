@@ -20,6 +20,7 @@ import {
   updateUserWalletAction,
 } from "../../redux/slices/users/usersSlices";
 import pay from "../../img/pay-1.png";
+import homeUrl from "../../components/appUrl/homeUrl";
 const AddExpense = () => {
   // const cookieval = document.cookie;
   let at = "At";
@@ -160,6 +161,7 @@ const AddExpense = () => {
       //Redirect
       setTimeout(() => {
         window.location.replace("http://localhost:3000/pay");
+        window.location.replace(`${homeUrl}/pay`);
       }, 3000);
 
       // console.log("wallet", incResult);
@@ -340,14 +342,13 @@ const AddExpense = () => {
                           </div>
                           {/* Err */}
                         </>
-                      ) : (
-                        <a
-                          className="btn btn-success w-100"
-                          href="http://localhost:3000/shop"
-                        >
-                          Click to Make A New Purchase
-                        </a>
-                      )}
+                      ) : // <a
+                      //   className="btn btn-success w-100"
+                      //   href="http://localhost:3000/shop"
+                      // >
+                      //   Click to Make A New Purchase
+                      // </a>
+                      null}
                       {/* <i className="btn btn-success">{total} </i>{" "} */}
                       {/* <i className="btn btn-primary">Gh₵</i>{" "} */}
                       {/* <input

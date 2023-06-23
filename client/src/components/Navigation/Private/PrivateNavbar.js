@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../../../redux/slices/users/usersSlices";
 import pay from "../../../img/pay-5.png";
-//import pay from "./logo/pay-5.png";
+import homeUrl from "../../../components/appUrl/homeUrl";
 
 const PrivateNavbar = () => {
   const users = useSelector((state) => state?.users);
@@ -71,10 +71,7 @@ const PrivateNavbar = () => {
                 </Link>
               </li>
               <li class="nav-item mb-2">
-                <a
-                  className="btn  btn-outline-warning me-2"
-                  href="http://localhost:3000"
-                >
+                <a className="btn  btn-outline-warning me-2" href={homeUrl}>
                   Campus
                 </a>
               </li>

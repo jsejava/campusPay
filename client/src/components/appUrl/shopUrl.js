@@ -1,2 +1,2 @@
-const shopUrl = "http://localhost:3000/shop";
+const shopUrl = "https://campus-service.netlify.app/shop";
 export default shopUrl;

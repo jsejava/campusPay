@@ -164,7 +164,7 @@ const AddFees = () => {
   const campus = [
     { value: "CUG", label: "CUG" },
     { value: "UNER", label: "UNER" },
-    { value: "LAGON", label: "LAGON" },
+    { value: "LEGON", label: "LEGON" },
   ];
 
   return (
@@ -271,7 +271,7 @@ const AddFees = () => {
                       value={campus.value}
                       onChange={(value) => setSchool(value.value)}
                       options={campus}
-                      placeholder="Select Your School"
+                      placeholder="Please Select Your School"
                     />
                     {school ? (
                       <>

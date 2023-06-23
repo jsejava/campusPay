@@ -275,6 +275,13 @@ const AddFees = () => {
                     />
                     {school ? (
                       <>
+                        <small
+                          style={{
+                            color: "blue",
+                          }}
+                        >
+                          Format: URG-123-452-6278
+                        </small>
                         <div className="mb-3 input-group">
                           <input
                             value={formik.values.title}
@@ -283,6 +290,8 @@ const AddFees = () => {
                             className="form-control"
                             type="text"
                             placeholder="Enter ID Number"
+                            pattern="[A-Za-z]{3}-[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            required
                           />
                         </div>
 

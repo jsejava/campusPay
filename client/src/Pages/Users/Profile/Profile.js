@@ -144,14 +144,28 @@ const Profile = () => {
                     <p className="mb-0">
                       Joined {moment(profile?.createdAt).format("LL")}
                     </p>
-                    <button
-                      onClick={() =>
-                        navigate(history, "update-profile", profile)
-                      }
-                      className="btn"
+                    <small className="me-3">Change PIN </small>
+                    <span
+                      className="badge penPin"
+                      style={{
+                        backgroundColor: "pink",
+                        // position: "absolute",
+                        // top: 10,
+                        borderRadius: 100,
+                        // marginLeft: 20,
+
+                        fontSize: 1,
+                      }}
                     >
-                      <i class="bi bi-pen fs-3 text-primary"></i>
-                    </button>
+                      <button
+                        onClick={() =>
+                          navigate(history, "update-profile", profile)
+                        }
+                        className="btn"
+                      >
+                        <i class="bi bi-pen fs-3 text-primary"></i>
+                      </button>
+                    </span>
                   </button>
                 </div>
 

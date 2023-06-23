@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -20,6 +20,7 @@ const formSchema = Yup.object({
 });
 
 const UpdateProfile = ({ location: { state: data } }) => {
+  const [error, setError] = useState(false);
   //dispatch action
   const dispatch = useDispatch();
 
@@ -44,6 +45,7 @@ const UpdateProfile = ({ location: { state: data } }) => {
     },
     onSubmit: (values) => {
       // console.log(values);
+      if (values.newpin.length !== 4) return setError(true);
       const user = {
         ...values,
         id: data?.data?.id,
@@ -134,6 +136,7 @@ const UpdateProfile = ({ location: { state: data } }) => {
                     {/* Err */}
                     <div className="text-danger mb-2">
                       {formik.touched.newpin && formik.errors.newpin}
+                      {error ? <label>PIN must be 4 character long</label> : ""}
                     </div>
 
                     {/* <div className="mb-3 input-group">
